@@ -2,6 +2,10 @@ package com.example.application.views;
 
 import com.example.application.views.about.AboutView;
 import com.example.application.views.helloworld.HelloWorldView;
+import com.example.application.views.helloworld.ConnectionEtudiant;
+import com.example.application.views.helloworld.PageAccueil;
+import com.example.application.views.helloworld.Etudiant;
+import com.example.application.views.helloworld.Admin;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -31,9 +35,9 @@ public class MainLayout extends AppLayout {
 
     public static class MenuItemInfo {
 
-        private String text;
-        private String iconClass;
-        private Class<? extends Component> view;
+        private final String text;
+        private final String iconClass;
+        private final Class<? extends Component> view;
 
         public MenuItemInfo(String text, String iconClass, Class<? extends Component> view) {
             this.text = text;
@@ -107,8 +111,11 @@ public class MainLayout extends AppLayout {
 
     private List<RouterLink> createLinks() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
-                new MenuItemInfo("Hello World", "la la-globe", HelloWorldView.class), //
-
+                new MenuItemInfo("Connection", "la la-globe", HelloWorldView.class),
+                new MenuItemInfo ("ConnectionEtudiant","la la-globe", ConnectionEtudiant.class),
+                new MenuItemInfo ("PageAccueil", "la la-globe", PageAccueil.class),
+                new MenuItemInfo ("Administrateur","la la-globe",Admin.class),
+                new MenuItemInfo ("Etudiant","la la-globe",Etudiant.class),
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
 
         };

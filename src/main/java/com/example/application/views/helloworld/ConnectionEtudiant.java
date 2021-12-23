@@ -12,12 +12,10 @@ import com.vaadin.flow.router.Route;
  *
  * @author ugobitterly
  */
-
-@PageTitle("Connection")
-@Route(value = "connection1", layout = MainLayout.class)
-public class HelloWorldView extends VerticalLayout {
-
-    public HelloWorldView() { 
+@PageTitle("ConnectionEtudiant")
+@Route(value = "connection2", layout = MainLayout.class)
+public class ConnectionEtudiant extends VerticalLayout {
+    public ConnectionEtudiant() { 
         //creation du login avec adresse mail et mdp pour s'indentifier
         setId("connection-view");
         setAlignItems(Alignment.CENTER);
@@ -31,7 +29,7 @@ public class HelloWorldView extends VerticalLayout {
         add(email);
         var password = new PasswordField("Mot de passe");
         add(
-        new H2("Connection en tant qu'administrateur"),
+        new H2("Connection en tant qu'étudiant"),
                 email,
                 password,
                 new Button("Se connecter")

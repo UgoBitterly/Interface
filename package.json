@@ -66,8 +66,10 @@
     "@webcomponents/shadycss": "1.8.0",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "construct-style-sheets-polyfill": "3.0.4",
+    "line-awesome": "1.3.0",
     "lit-element": "2.5.1",
-    "lit-html": "1.4.1"
+    "lit-html": "1.4.1",
+    "lumo-css-framework": "^4.0.10"
   },
   "devDependencies": {
     "babel-loader": "8.2.2",
@@ -155,8 +157,10 @@
       "@webcomponents/shadycss": "1.8.0",
       "@webcomponents/webcomponentsjs": "^2.2.10",
       "construct-style-sheets-polyfill": "3.0.4",
+      "line-awesome": "1.3.0",
       "lit-element": "2.5.1",
-      "lit-html": "1.4.1"
+      "lit-html": "1.4.1",
+      "lumo-css-framework": "^4.0.10"
     },
     "devDependencies": {
       "babel-loader": "8.2.2",
@@ -178,6 +182,6 @@
       "webpack-dev-server": "3.11.0",
       "webpack-merge": "4.2.2"
     },
-    "hash": "c3a200fda3aa091e435426b398e93797df9ab35dc35a0959796a46160462546d"
+    "hash": "5fcee695a4246d8da9252cd38a0833d5b0c632e2769fc57856fbdbfd5c046d7d"
   }
 }
