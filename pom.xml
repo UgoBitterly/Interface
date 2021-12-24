@@ -13,6 +13,9 @@
         <java.version>11</java.version>
         <vaadin.version>14.8.0</vaadin.version>
         <log4j2.version>2.15.0</log4j2.version>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
     </properties>
 
     <parent>
@@ -165,6 +168,12 @@
             <version>1.0.1</version>
             <type>jar</type>
         </dependency>
+ <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.0</version>
+ </dependency>
+
     </dependencies>
 
     <build>
