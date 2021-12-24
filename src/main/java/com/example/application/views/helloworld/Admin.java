@@ -24,7 +24,7 @@ public class Admin extends VerticalLayout {
     private final Tab semestre;
     private final Tab groupe;
     private final Tab module;
-    private final Tab etudiant;
+    private final Tab etudiant;//j'essaye d'écrire qqc
     private final VerticalLayout content;
     
     public Admin() {
