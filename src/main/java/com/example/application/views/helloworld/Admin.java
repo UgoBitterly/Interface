@@ -51,55 +51,74 @@ public class Admin extends VerticalLayout {
         //semestre
         TextField numero = new TextField("Numéro");
         TextField annee = new TextField("Année");
-        TextField idsemestre = new TextField("Id");
         Button creersemestre = new Button("Créer");
         Button rsemestre = new Button("Réinitialiser", event -> {
             numero.setValue("");
             annee.setValue("");
-            idsemestre.setValue("");
         });
         rsemestre.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout creationsemestre = new HorizontalLayout(numero,annee,idsemestre,creersemestre,rsemestre);
+        HorizontalLayout creationsemestre = new HorizontalLayout(numero,annee);
         creationsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-                
+        HorizontalLayout buttonsemestre = new HorizontalLayout(creersemestre,rsemestre);
+        buttonsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        
         //groupe (de modules)
-        TextField idgroupe = new TextField("Id");
         TextField creneau = new TextField("Créneau horaire");
         Button creergroupe = new Button("Créer");
         Button rgroupe = new Button("Réinitialiser", event -> {
-                idgroupe.setValue("");
                 creneau.setValue("");
         });
         rgroupe.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout creationgroupe = new HorizontalLayout(idgroupe,creneau,creergroupe,rgroupe);
+        HorizontalLayout creationgroupe = new HorizontalLayout(creneau);
         creationsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-                
+        HorizontalLayout buttongroupe = new HorizontalLayout(creergroupe,rgroupe);
+        buttongroupe.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        
         //module
-        TextField idmodule = new TextField("Id");
         TextField nommodule = new TextField("Nom");
         TextField nbmax = new TextField("Capacité maximale");
         TextField nbmin = new TextField("Capacité minimale");
         Button creermodule = new Button("Créer");
         Button rmodule = new Button("Réinitialiser", event -> {
-                idmodule.setValue("");
                 nommodule.setValue("");
                 nbmax.setValue("");
                 nbmin.setValue("");
         });
         rmodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout creationmodule = new HorizontalLayout(idmodule,nommodule,nbmax,nbmin,creermodule,rmodule);
+        HorizontalLayout creationmodule = new HorizontalLayout(nommodule,nbmax,nbmin);
         creationmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-                
+        HorizontalLayout buttonmodule = new HorizontalLayout(creermodule,rmodule);
+        buttonmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        
+        //etudiant
+        TextField nom = new TextField("Nom");
+        TextField prenom = new TextField("Prénom");
+        TextField mail = new TextField("Adresse mail INSA");
+        TextField mdp = new TextField("Mot de Passe");
+        Button creeretudiant = new Button("Créer");
+        Button retudiant = new Button("Réinitialiser", event -> {
+           nom.setValue("");
+           prenom.setValue("");
+           mail.setValue("");
+           mdp.setValue("");
+        });
+        retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp);
+        creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        HorizontalLayout buttonetudiant = new HorizontalLayout(creeretudiant,retudiant);
+        buttonetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        
+        //ici on affiche le menu correspondant en fonction du choix de création
 	if (tab.equals(accueil)) {
             content.add(new Paragraph("Veuillez choisir ce que vous voulez créer en cliquant sur l'icone correspondant"));
         } else if (tab.equals(semestre)) {
-            content.add(new Paragraph("Veuillez entrer les attributs du nouveau semestre"),creationsemestre);
+            content.add(new Paragraph("Veuillez entrer les attributs du nouveau semestre"),creationsemestre,buttonsemestre);
 	} else if (tab.equals(groupe)) {
-            content.add(new Paragraph("Veuillez entrer les attributs du nouveau groupe"),creationgroupe);
+            content.add(new Paragraph("Veuillez entrer les attributs du nouveau groupe"),creationgroupe,buttongroupe);
 	} else if (tab.equals(module)){
-            content.add(new Paragraph("Veuillez entrer les attributs du nouveau module"),creationmodule);
+            content.add(new Paragraph("Veuillez entrer les attributs du nouveau module"),creationmodule,buttonmodule);
 	} else {
-            content.add(new Paragraph("Créer étudiant"));
+            content.add(new Paragraph("Veuillez entrer les attributs du nouvel étudiant"),creationetudiant,buttonetudiant);
         }
     }
 }
