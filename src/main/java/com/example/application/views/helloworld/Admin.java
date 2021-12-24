@@ -3,6 +3,7 @@ package com.example.application.views.helloworld;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -95,6 +96,7 @@ public class Admin extends VerticalLayout {
         TextField prenom = new TextField("Prénom");
         TextField mail = new TextField("Adresse mail INSA");
         TextField mdp = new TextField("Mot de Passe");
+        DatePicker datenaissance = new DatePicker("Date de naissance");
         Button creeretudiant = new Button("Créer");
         Button retudiant = new Button("Réinitialiser", event -> {
            nom.setValue("");
@@ -103,7 +105,7 @@ public class Admin extends VerticalLayout {
            mdp.setValue("");
         });
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp);
+        HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp,datenaissance);
         creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         HorizontalLayout buttonetudiant = new HorizontalLayout(creeretudiant,retudiant);
         buttonetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
