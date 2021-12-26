@@ -7,4 +7,11 @@
                 <goal>spring-boot:run</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-bdd</actionName>
+            <displayName>bdd</displayName>
+            <goals>
+                <goal>spring-boot:run</goal>
+            </goals>
+        </action>
     </actions>
