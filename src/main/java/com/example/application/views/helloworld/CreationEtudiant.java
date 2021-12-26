@@ -10,11 +10,11 @@ package com.example.application.views.helloworld;
  * @author matlu
  */
 public class CreationEtudiant {
-     private Long id;
+     private int id;
     private String nom, prenom, email,mdp;
     private java.sql.Date dateDeNaissance;
 
-    public CreationEtudiant (Long id, String nom, String prenom, java.sql.Date dateDeNaissance, String email, String mdp) {
+    public CreationEtudiant (int id, String nom, String prenom, java.sql.Date dateDeNaissance, String email, String mdp) {
         this.id = id;
         this.nom= nom;
         this.prenom = prenom;
@@ -28,7 +28,7 @@ public class CreationEtudiant {
         
     }
 
-   public String getPrenoom(){
+   public String getPrenom(){
         return this.prenom;
         
     }
@@ -40,7 +40,7 @@ public class CreationEtudiant {
         return this.email;
         
     }
-   public Long getId(){
+   public int getId(){
         return this.id;
         
     }
@@ -48,7 +48,7 @@ public java.sql.Date getDatedeNaissance(){
         return this.dateDeNaissance;
         
     }
-public void setId(long id){ 
+public void setId(int id){ 
         this.id=id;
     }  
 public void setMdp(String mdp){ 

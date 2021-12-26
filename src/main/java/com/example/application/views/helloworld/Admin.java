@@ -26,6 +26,8 @@ public class Admin extends VerticalLayout {
     private final Tab module;
     private final Tab etudiant;//j'essaye d'écrire qqc
     private final VerticalLayout content;
+    private CreationEtudiant etudiant1;
+    
     
     public Admin() {
         accueil = new Tab("Accueil");
