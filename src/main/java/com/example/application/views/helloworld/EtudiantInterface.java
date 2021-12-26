@@ -13,14 +13,14 @@ import com.vaadin.flow.component.tabs.Tabs;
  */
 @PageTitle("Etudiant")
 @Route(value = "etudiant", layout = MainLayout.class)
-public class Etudiant extends VerticalLayout {
+public class EtudiantInterface extends VerticalLayout {
     private final Tab accueil;
     private final Tab groupe1;
     private final Tab groupe2;
     private final Tab groupe3;
     private final VerticalLayout content;
 
-    public Etudiant() {
+    public EtudiantInterface() {
 		accueil = new Tab("Consignes");
 		groupe1 = new Tab("Groupe 1");
 		groupe2 = new Tab("Groupe 2");

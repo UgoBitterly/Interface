@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
-public class ChangeBdd {
+public class ModifieBdd {
                public static void changeNomEtudiant(Connection con,
             String nouveaunom, String nomachange ) throws SQLException {
       try {

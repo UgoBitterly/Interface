@@ -4,7 +4,7 @@ import com.example.application.views.about.AboutView;
 import com.example.application.views.helloworld.HelloWorldView;
 import com.example.application.views.helloworld.ConnectionEtudiant;
 import com.example.application.views.helloworld.PageAccueil;
-import com.example.application.views.helloworld.Etudiant;
+import com.example.application.views.helloworld.EtudiantInterface;
 import com.example.application.views.helloworld.Admin;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -115,7 +115,7 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo ("ConnectionEtudiant","la la-globe", ConnectionEtudiant.class),
                 new MenuItemInfo ("PageAccueil", "la la-globe", PageAccueil.class),
                 new MenuItemInfo ("Administrateur","la la-globe",Admin.class),
-                new MenuItemInfo ("Etudiant","la la-globe",Etudiant.class),
+                new MenuItemInfo ("Etudiant","la la-globe",EtudiantInterface.class),
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
 
         };

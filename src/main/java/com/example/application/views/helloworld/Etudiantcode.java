@@ -5,6 +5,7 @@
  */
 package com.example.application.views.helloworld;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,8 +38,23 @@ public class Etudiantcode {
             
                 
             }
-    
+    public void AjouteEtudiant(Connection con,CreationEtudiant etudiant) 
+        throws SQLException {
+         try ( PreparedStatement pst = con.prepareStatement(
+                """
+        insert into etudiant (nom,prenom,datedenaissance,motdepasse,email)
+          values (?,?,?,?,?)
+        """)) {
+            pst.setString(1, getNom("nom"));
+            pst.setString(2, prenom);
+            pst.setDate(3, datedenaissance);
+            pst.setString(4, motdepasse);
+            pst.setString(5,email);
+            
+            pst.executeUpdate();
         }
+    
+        
     
 
             

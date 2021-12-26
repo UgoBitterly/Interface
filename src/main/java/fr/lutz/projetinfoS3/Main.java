@@ -109,8 +109,8 @@ public class Main {
             AfficheBdd.afficheModule(con);
             CreationLigne.createModuleOuvert(con,1,1);
             CreationLigne.createEtudiant(con,"matthieu","lut",sqld,"ugo.bietterly@insa-strasbourg.fr","mooo");
-            ChangeBdd.changeNomEtudiant(con,"benjamin","matthieu");
-            ChangeBdd.changeNombrePlaceMax(con,50,"toto");
+            ModifieBdd.changeNomEtudiant(con,"benjamin","matthieu");
+            ModifieBdd.changeNombrePlaceMax(con,50,"toto");
            int result= trouveEtudiant(con,"Toto");
             
              CreationLigne.createInscription(con,3,1);
