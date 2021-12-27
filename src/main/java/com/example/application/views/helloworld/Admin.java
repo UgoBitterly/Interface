@@ -1,5 +1,6 @@
 package com.example.application.views.helloworld;
 
+import static com.example.application.Application.connectPostgresql;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -13,6 +14,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
+import com.example.application.views.helloworld.CreationEtudiant;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author ugobitterly
@@ -48,7 +53,25 @@ public class Admin extends VerticalLayout {
 
 	add(tabs, content);
     }
-    private void setContent(Tab tab) {
+     public static Connection connectPostgresql(String host, int port,
+            String database, String user, String pass)
+            throws ClassNotFoundException, SQLException {
+        // teste la présence du driver postgresql
+        Class.forName("org.postgresql.Driver");
+        Connection con = DriverManager.getConnection(
+                "jdbc:postgresql://" + host + ":" + port + "/" + database, user, pass);
+        // fixe le plus haut degré d'isolation entre transactions
+        
+        con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        return con;
+    }
+    
+    private void setContent(Tab tab) { 
+        
+         try ( Connection con = connectPostgresql(
+                "localhost", 5432,
+                "postgres", "postgres", "pass")) {
+            
 	content.removeAll();
         //ici on défini le contenu à afficher pour chaque "tab" de l'interface
         //semestre
@@ -99,7 +122,19 @@ public class Admin extends VerticalLayout {
         TextField mail = new TextField("Adresse mail INSA");
         TextField mdp = new TextField("Mot de Passe");
         DatePicker datenaissance = new DatePicker("Date de naissance");
-        Button creeretudiant = new Button("Créer");
+        Button creeretudiant = new Button("Créer", event -> { 
+           String nom1 = nom.getValue();
+           String prenom1=prenom.getValue();
+           String email1 = mail.getValue();
+           String mdp1 = mdp.getValue();
+          // LocalDate date1 = datenaissance.getValue(); TROUVER QUOI METTRE POUR LA DATE
+          
+          int resultat= TrouveEtudiant.trouveEtudiant(con,nom1);
+        if (resultat==-1){
+             
+         
+        } 
+        });
         Button retudiant = new Button("Réinitialiser", event -> {
            nom.setValue("");
            prenom.setValue("");
@@ -124,5 +159,7 @@ public class Admin extends VerticalLayout {
 	} else {
             content.add(new Paragraph("Veuillez entrer les attributs du nouvel étudiant"),creationetudiant,buttonetudiant);
         }
-    }
-}
+    }catch (Exception ex) {
+            System.out.println("Probleme : " + ex);
+        }
+}}
