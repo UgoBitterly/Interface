@@ -5,14 +5,19 @@
  */
 package com.example.application.views.helloworld;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author matlu
  */
 public class CreationEtudiant {
-     private int id;
-    private String nom, prenom, email,mdp;
-    private java.sql.Date dateDeNaissance;
+   protected int id;
+   protected String nom, prenom, email,mdp;
+   protected java.sql.Date dateDeNaissance;
 
     public CreationEtudiant (int id, String nom, String prenom, java.sql.Date dateDeNaissance, String email, String mdp) {
         this.id = id;
@@ -66,4 +71,22 @@ public void setMdp(String mdp){
     public void setDatedeNaissance(java.sql.Date ld){ 
         this.dateDeNaissance=ld;
     }  
-}
+    
+      public void AjouteEtudiant(Connection con,CreationEtudiant etudiant) 
+        throws SQLException {
+         try ( PreparedStatement pst = con.prepareStatement(
+                """
+        insert into etudiant (nom,prenom,datedenaissance,motdepasse,email)
+          values (?,?,?,?,?)
+        """)) {
+            
+     
+            pst.setString(1, this.getNom());
+            pst.setString(2,this.getPrenom());
+            pst.setDate(3, this.getDatedeNaissance());
+            pst.setString(4, this.getEmail());
+            pst.setString(5,this.getMdp());
+            
+            pst.executeUpdate();
+        }
+}}

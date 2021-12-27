@@ -23,8 +23,8 @@ public class TableEtudiant {
                  nom varchar(50) not null,
                 prenom varchar(50) not null,
                  datedenaissance  date ,
-                motDePasse varchar(50) not null,
-               email varchar(50) not null)
+                email varchar(50) not null,
+                 motDePassevarchar(50) not null)
                 
                """
             );

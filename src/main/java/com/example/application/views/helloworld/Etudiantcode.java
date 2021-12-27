@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import com.example.application.views.helloworld.CreationEtudiant;
 import org.springframework.stereotype.Component;
 
 /**
@@ -38,21 +38,7 @@ public class Etudiantcode {
             
                 
             }
-    public void AjouteEtudiant(Connection con,CreationEtudiant etudiant) 
-        throws SQLException {
-         try ( PreparedStatement pst = con.prepareStatement(
-                """
-        insert into etudiant (nom,prenom,datedenaissance,motdepasse,email)
-          values (?,?,?,?,?)
-        """)) {
-            pst.setString(1, getNom("nom"));
-            pst.setString(2, prenom);
-            pst.setDate(3, datedenaissance);
-            pst.setString(4, motdepasse);
-            pst.setString(5,email);
-            
-            pst.executeUpdate();
-        }
+  }
     
         
     
