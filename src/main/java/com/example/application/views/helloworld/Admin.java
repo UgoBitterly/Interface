@@ -129,11 +129,11 @@ public class Admin extends VerticalLayout {
            String mdp1 = mdp.getValue();
           // LocalDate date1 = datenaissance.getValue(); TROUVER QUOI METTRE POUR LA DATE
           
-          int resultat= TrouveEtudiant.trouveEtudiant(con,nom1);
-        if (resultat==-1){
+          //int resultat= TrouveEtudiant.trouveEtudiant(con,nom1);
+        //if (resultat==-1){
              
          
-        } 
+        //} 
         });
         Button retudiant = new Button("Réinitialiser", event -> {
            nom.setValue("");
