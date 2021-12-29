@@ -15,6 +15,8 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.example.application.views.helloworld.CreationEtudiant;
+import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.IntegerField;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -143,16 +145,18 @@ public class Admin extends VerticalLayout {
         
         //module
         TextField nommodule = new TextField("Nom");
-        TextField nbmax = new TextField("Capacité maximale");
-        TextField nbmin = new TextField("Capacité minimale");
+        IntegerField nbmax = new IntegerField("Capacité maximale");
+        IntegerField nbmin = new IntegerField("Capacité minimale");
+        nbmax.setPlaceholder("Entier max");
+        nbmin.setPlaceholder("Entier min");
         Button creermodule = new Button("Créer" , event -> {
             String nom = nommodule.getValue();
-            String nbmax1 = nbmax.getValue();
-            String nbmin1 = nbmin.getValue();
+            Integer nbmax1 = nbmax.getValue();
+            Integer nbmin1 = nbmin.getValue();
             try{
-            int numbermax = Integer.parseInt(nbmax1);
+            int numbermax = nbmax1;
             try{
-            int numbermin = Integer.parseInt(nbmin1);
+            int numbermin = nbmin1;
             CreationLigne.createModule(con, nom, numbermax,numbermin);
         }
         catch (NumberFormatException ex){
@@ -170,8 +174,8 @@ public class Admin extends VerticalLayout {
         });
         Button rmodule = new Button("Réinitialiser", event -> {
                 nommodule.setValue("");
-                nbmax.setValue("");
-                nbmin.setValue("");
+                nbmax.setValue(0);
+                nbmin.setValue(0);     
         });
         rmodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationmodule = new HorizontalLayout(nommodule,nbmax,nbmin);
@@ -182,7 +186,9 @@ public class Admin extends VerticalLayout {
         //etudiant
         TextField nom = new TextField("Nom");
         TextField prenom = new TextField("Prénom");
-        TextField mail = new TextField("Adresse mail INSA");
+        EmailField mail = new EmailField("Adresse mail INSA");
+        mail.setPlaceholder("utilisateur@insa-strasbourg.fr");
+        mail.setErrorMessage("Veuillez entrer une adresse mail INSA");
         TextField mdp = new TextField("Mot de Passe");
         DatePicker datenaissance = new DatePicker("Date de naissance");
         Button creeretudiant = new Button("Créer", event -> { 
