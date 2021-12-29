@@ -8,7 +8,6 @@ package com.example.application.views.helloworld;
 import com.example.application.views.helloworld.ConnexionAdmin;
 import com.example.application.views.helloworld.AfficheBdd;
 import fr.lutz.projetinfoS3.ConnexionEtudiant;
-import fr.lutz.projetinfoS3.TableDrop;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -87,9 +86,7 @@ public class Main {
          CreateTable.createTableSemestre(con);
          CreateTable.createTableGroupeModule(con);
          CreateTable.createTableAdmin(con);
-         CreateTable.createTableInscription(con);
-         CreateTable.createTableCreneau(con);
-         CreateTable.createTableHistorique(con);
+        
          
          
             LocalDate ld = LocalDate.of(1985, Month.MARCH, 23);
@@ -109,17 +106,17 @@ public class Main {
             CreationLigne.createSemestre(con,8,3);
             AfficheBdd.afficheEtudiant(con);
             AfficheBdd.afficheSemestre(con);
-            CreateTable.createTableModuleOuvert(con);
+            //CreateTable.createTableModuleOuvert(con);
             AfficheBdd.afficheModule(con);
-            CreationLigne.createModuleOuvert(con,1,1);
+            //CreationLigne.createModuleOuvert(con,1,1);
             CreationLigne.createEtudiant(con,"matthieu","lut",sqld,"ugo.bietterly@insa-strasbourg.fr","mooo");
             ModifieBdd.changeNomEtudiant(con,"benjamin","matthieu");
             ModifieBdd.changeNombrePlaceMax(con,50,"toto");
            int result= trouveEtudiant(con,"Toto");
             
-             CreationLigne.createInscription(con,3,1);
-            CreationLigne.createCreneau(con, 1, 1);
-            CreationLigne.createHistorique(con, 3, 1);
+            // CreationLigne.createInscription(con,3,1);
+           // CreationLigne.createCreneau(con, 1, 1);
+            //CreationLigne.createHistorique(con, 3, 1);
             
             String verif= ConnexionEtudiant.connexionEtudiant(con,"ugo.bietterly@ins-strasbourg.fr","tp");
            System.out.println(verif);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.lutz.projetinfoS3;
+package com.example.application.views.helloworld;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,14 +31,15 @@ public class TableDrop {
     
  public static void DropTable(Connection con) throws SQLException {
         //méthode permettant d'effacer une table de la base de donnée
-       
-       tabledrop(con,"inscription");
-       tabledrop(con,"module");
+       tabledrop(con,"etudiant");
+       //tabledrop(con,"inscription");
+       tabledrop(con,"module"); 
+       tabledrop(con,"semestre");
        tabledrop(con,"groupeModule");
-      tabledrop(con,"historique");
-         tabledrop(con,"semestre");
-          tabledrop(con,"creneau");
-           tabledrop(con,"moduleOuvert");
+      //tabledrop(con,"historique");
+        
+          //tabledrop(con,"creneau");
+           //tabledrop(con,"moduleOuvert");
             tabledrop(con,"administrateur");
-            tabledrop(con,"etudiant");
+            
     }}
