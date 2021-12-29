@@ -17,7 +17,7 @@ import org.vaadin.artur.helpers.LaunchUtil;
 @NpmPackage(value = "lumo-css-framework", version = "^4.0.10")
 @NpmPackage(value = "line-awesome", version = "1.3.0")
 public class Application extends SpringBootServletInitializer {
-
+//spring-boot:run
     
     
     
