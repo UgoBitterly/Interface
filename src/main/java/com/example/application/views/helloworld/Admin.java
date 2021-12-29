@@ -35,7 +35,7 @@ public class Admin extends VerticalLayout {
     private final Tab semestre;
     private final Tab groupe;
     private final Tab module;
-    private final Tab etudiant;//j'essaye d'écrire qqc
+    private final Tab etudiant;
     private final VerticalLayout content;
     private CreationEtudiant etudiant1;
     
@@ -107,7 +107,8 @@ public class Admin extends VerticalLayout {
         catch (NumberFormatException ex){
             ex.printStackTrace();
         }
-        
+        numero.setValue("");
+            annee.setValue("");
             
         });
         Button rsemestre = new Button("Réinitialiser", event -> {
@@ -132,7 +133,8 @@ public class Admin extends VerticalLayout {
             ex.printStackTrace();
         }   catch (SQLException ex) { 
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            
+        creneau.setValue("");} 
         });
         Button rgroupe = new Button("Réinitialiser", event -> {
                 creneau.setValue("");
@@ -152,7 +154,7 @@ public class Admin extends VerticalLayout {
         Button creermodule = new Button("Créer" , event -> {
             String nom = nommodule.getValue();
             Integer nbmax1 = nbmax.getValue();
-            Integer nbmin1 = nbmin.getValue();//SALUT
+            Integer nbmin1 = nbmin.getValue();
             try{
             int numbermax = nbmax1;
             try{
@@ -169,7 +171,9 @@ public class Admin extends VerticalLayout {
             ex.printStackTrace();
         }
             
-              
+           nommodule.setValue("");
+                nbmax.setValue(0);
+                nbmin.setValue(0);    
               
         });
         Button rmodule = new Button("Réinitialiser", event -> {
@@ -203,7 +207,10 @@ public class Admin extends VerticalLayout {
                //Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
           // }
           
-        
+        nom.setValue("");
+           prenom.setValue("");
+           mail.setValue("");
+           mdp.setValue("");
         });
         Button retudiant = new Button("Réinitialiser", event -> {
            nom.setValue("");
