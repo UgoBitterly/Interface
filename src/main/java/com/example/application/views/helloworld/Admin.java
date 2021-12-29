@@ -1,6 +1,6 @@
 package com.example.application.views.helloworld;
 
-import static com.example.application.Application.connectPostgresql;
+
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -18,10 +18,13 @@ import com.example.application.views.helloworld.CreationEtudiant;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ugobitterly
  */
+
 @PageTitle("Administrateur")
 @Route(value = "admin", layout = MainLayout.class)
 public class Admin extends VerticalLayout {
@@ -34,7 +37,7 @@ public class Admin extends VerticalLayout {
     private CreationEtudiant etudiant1;
     
     
-    public Admin() {
+    public Admin() throws SQLException {
         accueil = new Tab("Accueil");
         semestre = new Tab("Semestre");
 	groupe = new Tab("Groupe");
@@ -43,8 +46,14 @@ public class Admin extends VerticalLayout {
 
 	Tabs tabs = new Tabs(accueil, semestre, groupe, module, etudiant);
         tabs.addThemeVariants(TabsVariant.LUMO_CENTERED);
-	tabs.addSelectedChangeListener(event ->
-		setContent(event.getSelectedTab())
+	tabs.addSelectedChangeListener((var event) ->
+		{
+            try {
+                setContent(event.getSelectedTab());
+            } catch (SQLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 	);
 
 	content = new VerticalLayout();
@@ -66,8 +75,8 @@ public class Admin extends VerticalLayout {
         return con;
     }
     
-    private void setContent(Tab tab) { 
-        
+    private void setContent(Tab tab)  
+        throws SQLException {
          try ( Connection con = connectPostgresql(
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
@@ -127,20 +136,21 @@ public class Admin extends VerticalLayout {
            String prenom1=prenom.getValue();
            String email1 = mail.getValue();
            String mdp1 = mdp.getValue();
-          // LocalDate date1 = datenaissance.getValue(); TROUVER QUOI METTRE POUR LA DATE
+          //java.sql.Date date1 = datenaissance.getValue(); 
+            //try {
+             //   CreationLigne.createEtudiant(con, nom1, prenom1, date1, email1, mdp1);
+            //} catch (SQLException ex) {
+               // Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+           // }
           
-          //int resultat= TrouveEtudiant.trouveEtudiant(con,nom1);
-        //if (resultat==-1){
-             
-         
-        //} 
+        
         });
         Button retudiant = new Button("Réinitialiser", event -> {
            nom.setValue("");
            prenom.setValue("");
            mail.setValue("");
            mdp.setValue("");
-        });
+       });
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp,datenaissance);
         creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);

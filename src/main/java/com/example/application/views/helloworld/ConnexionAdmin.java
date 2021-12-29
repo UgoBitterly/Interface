@@ -1,4 +1,4 @@
-package fr.lutz.projetinfoS3;
+package com.example.application.views.helloworld;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
