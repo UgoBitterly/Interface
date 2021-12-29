@@ -1,35 +1,32 @@
 package com.example.application.views.helloworld;
 
 import com.example.application.views.MainLayout;
-import static com.example.application.views.helloworld.Admin.connectPostgresql;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
 /**
  *
  * @author ugobitterly
  */
-@PageTitle("ConnectionEtudiant")
-@Route(value = "connection2", layout = MainLayout.class)
-public class ConnectionEtudiant extends VerticalLayout {
-    public ConnectionEtudiant() 
+
+@PageTitle("Connection")
+@Route(value = "connection1", layout = MainLayout.class)
+public class AdminConnection extends VerticalLayout {
+
+    public AdminConnection() 
             throws SQLException {
          try ( Connection con = Main.connectPostgresql(
                 "localhost", 5432,
-                "postgres", "postgres", "pass")) {
+                "postgres", "postgres", "pass")) { 
         //creation du login avec adresse mail et mdp pour s'indentifier
         setId("connection-view");
         setAlignItems(Alignment.CENTER);
@@ -43,7 +40,7 @@ public class ConnectionEtudiant extends VerticalLayout {
         add(email);
         var password = new PasswordField("Mot de passe");
         add(
-        new H2("Connection en tant qu'étudiant"),
+        new H2("Connection en tant qu'administrateur"),
                 email,
                 password,
                 new Button("Se connecter", event -> {
@@ -51,7 +48,7 @@ public class ConnectionEtudiant extends VerticalLayout {
                 String mdp = password.getValue();
             try {
                 add(new Paragraph ("ok"));
-                var resultat = ConnexionEtudiant.connexionEtudiant(con, email1, mdp);
+                var resultat = ConnexionAdmin.connexionAdmin(con, email1, mdp);
                add(new Paragraph ("salut"));
                 if (resultat=="ok"){
                     add(new Paragraph ("tout est ok"));
@@ -74,6 +71,6 @@ public class ConnectionEtudiant extends VerticalLayout {
         catch (Exception ex) {
             System.out.println("Probleme : " + ex);
         }
-    
-}
+           
+    }
 }
