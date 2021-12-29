@@ -1,6 +1,6 @@
 package com.example.application.views.helloworld;
 
-import static com.example.application.Application.connectPostgresql;
+
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -18,10 +18,14 @@ import com.example.application.views.helloworld.CreationEtudiant;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.time.LocalDate;
+import java.util.logging.Logger;
 /**
  *
  * @author ugobitterly
  */
+
 @PageTitle("Administrateur")
 @Route(value = "admin", layout = MainLayout.class)
 public class Admin extends VerticalLayout {
@@ -34,7 +38,7 @@ public class Admin extends VerticalLayout {
     private CreationEtudiant etudiant1;
     
     
-    public Admin() {
+    public Admin() throws SQLException {
         accueil = new Tab("Accueil");
         semestre = new Tab("Semestre");
 	groupe = new Tab("Groupe");
@@ -43,8 +47,14 @@ public class Admin extends VerticalLayout {
 
 	Tabs tabs = new Tabs(accueil, semestre, groupe, module, etudiant);
         tabs.addThemeVariants(TabsVariant.LUMO_CENTERED);
-	tabs.addSelectedChangeListener(event ->
-		setContent(event.getSelectedTab())
+	tabs.addSelectedChangeListener((var event) ->
+		{
+            try {
+                setContent(event.getSelectedTab());
+            } catch (SQLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 	);
 
 	content = new VerticalLayout();
@@ -66,8 +76,8 @@ public class Admin extends VerticalLayout {
         return con;
     }
     
-    private void setContent(Tab tab) { 
-        
+    private void setContent(Tab tab)  
+        throws SQLException {
          try ( Connection con = connectPostgresql(
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
@@ -77,7 +87,27 @@ public class Admin extends VerticalLayout {
         //semestre
         TextField numero = new TextField("Numéro");
         TextField annee = new TextField("Année");
-        Button creersemestre = new Button("Créer");
+        Button creersemestre = new Button("Créer", event -> {
+        String numero1 = numero.getValue();
+        String annee1= annee.getValue();
+        try{
+            int num = Integer.parseInt(numero1);
+            try{
+            int anne= Integer.parseInt(annee1);
+            CreationLigne.createSemestre(con, anne, num);
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }       catch (SQLException ex) {
+                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        
+            
+        });
         Button rsemestre = new Button("Réinitialiser", event -> {
             numero.setValue("");
             annee.setValue("");
@@ -90,7 +120,18 @@ public class Admin extends VerticalLayout {
         
         //groupe (de modules)
         TextField creneau = new TextField("Créneau horaire");
-        Button creergroupe = new Button("Créer");
+        Button creergroupe = new Button("Créer", event -> {
+            String creneau1 = creneau.getValue();
+            try{
+            int horraire = Integer.parseInt(creneau1);
+            CreationLigne.createGroupeModule(con, horraire);
+            }
+            catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }   catch (SQLException ex) { 
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        });
         Button rgroupe = new Button("Réinitialiser", event -> {
                 creneau.setValue("");
         });
@@ -104,7 +145,29 @@ public class Admin extends VerticalLayout {
         TextField nommodule = new TextField("Nom");
         TextField nbmax = new TextField("Capacité maximale");
         TextField nbmin = new TextField("Capacité minimale");
-        Button creermodule = new Button("Créer");
+        Button creermodule = new Button("Créer" , event -> {
+            String nom = nommodule.getValue();
+            String nbmax1 = nbmax.getValue();
+            String nbmin1 = nbmin.getValue();
+            try{
+            int numbermax = Integer.parseInt(nbmax1);
+            try{
+            int numbermin = Integer.parseInt(nbmin1);
+            CreationLigne.createModule(con, nom, numbermax,numbermin);
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }       catch (SQLException ex) {
+                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+            
+              
+              
+        });
         Button rmodule = new Button("Réinitialiser", event -> {
                 nommodule.setValue("");
                 nbmax.setValue("");
@@ -127,20 +190,21 @@ public class Admin extends VerticalLayout {
            String prenom1=prenom.getValue();
            String email1 = mail.getValue();
            String mdp1 = mdp.getValue();
-          // LocalDate date1 = datenaissance.getValue(); TROUVER QUOI METTRE POUR LA DATE
+          LocalDate date1 = datenaissance.getValue(); 
+           // try {
+               // CreationLigne.createEtudiant(con, nom1, prenom1, date1, email1, mdp1);
+            //} catch (SQLException ex) {
+               //Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+          // }
           
-          //int resultat= TrouveEtudiant.trouveEtudiant(con,nom1);
-        //if (resultat==-1){
-             
-         
-        //} 
+        
         });
         Button retudiant = new Button("Réinitialiser", event -> {
            nom.setValue("");
            prenom.setValue("");
            mail.setValue("");
            mdp.setValue("");
-        });
+       });
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp,datenaissance);
         creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);

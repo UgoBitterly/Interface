@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.lutz.projetinfoS3;
+package com.example.application.views.helloworld;
 
+import com.example.application.views.helloworld.ConnexionAdmin;
+import com.example.application.views.helloworld.AfficheBdd;
+import fr.lutz.projetinfoS3.ConnexionEtudiant;
+import fr.lutz.projetinfoS3.TableDrop;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
