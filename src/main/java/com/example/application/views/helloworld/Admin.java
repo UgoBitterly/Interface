@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 /**
  *
@@ -113,7 +114,29 @@ public class Admin extends VerticalLayout {
         TextField nommodule = new TextField("Nom");
         TextField nbmax = new TextField("Capacité maximale");
         TextField nbmin = new TextField("Capacité minimale");
-        Button creermodule = new Button("Créer");
+        Button creermodule = new Button("Créer" , event -> {
+            String nom = nommodule.getValue();
+            String nbmax1 = nbmax.getValue();
+            String nbmin1 = nbmin.getValue();
+            try{
+            int numbermax = Integer.parseInt(nbmax1);
+            try{
+            int numbermin = Integer.parseInt(nbmin1);
+            CreationLigne.createModule(con, nom, numbermax,numbermin);
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }       catch (SQLException ex) {
+                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+            
+              
+              
+        });
         Button rmodule = new Button("Réinitialiser", event -> {
                 nommodule.setValue("");
                 nbmax.setValue("");
@@ -136,12 +159,12 @@ public class Admin extends VerticalLayout {
            String prenom1=prenom.getValue();
            String email1 = mail.getValue();
            String mdp1 = mdp.getValue();
-          //java.sql.Date date1 = datenaissance.getValue(); 
-            //try {
-             //   CreationLigne.createEtudiant(con, nom1, prenom1, date1, email1, mdp1);
+          LocalDate date1 = datenaissance.getValue(); 
+           // try {
+               // CreationLigne.createEtudiant(con, nom1, prenom1, date1, email1, mdp1);
             //} catch (SQLException ex) {
-               // Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-           // }
+               //Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+          // }
           
         
         });
