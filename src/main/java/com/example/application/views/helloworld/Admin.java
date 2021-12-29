@@ -87,7 +87,27 @@ public class Admin extends VerticalLayout {
         //semestre
         TextField numero = new TextField("Numéro");
         TextField annee = new TextField("Année");
-        Button creersemestre = new Button("Créer");
+        Button creersemestre = new Button("Créer", event -> {
+        String numero1 = numero.getValue();
+        String annee1= annee.getValue();
+        try{
+            int num = Integer.parseInt(numero1);
+            try{
+            int anne= Integer.parseInt(annee1);
+            CreationLigne.createSemestre(con, anne, num);
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }       catch (SQLException ex) {
+                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+        catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }
+        
+            
+        });
         Button rsemestre = new Button("Réinitialiser", event -> {
             numero.setValue("");
             annee.setValue("");
@@ -100,7 +120,18 @@ public class Admin extends VerticalLayout {
         
         //groupe (de modules)
         TextField creneau = new TextField("Créneau horaire");
-        Button creergroupe = new Button("Créer");
+        Button creergroupe = new Button("Créer", event -> {
+            String creneau1 = creneau.getValue();
+            try{
+            int horraire = Integer.parseInt(creneau1);
+            CreationLigne.createGroupeModule(con, horraire);
+            }
+            catch (NumberFormatException ex){
+            ex.printStackTrace();
+        }   catch (SQLException ex) { 
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        });
         Button rgroupe = new Button("Réinitialiser", event -> {
                 creneau.setValue("");
         });
