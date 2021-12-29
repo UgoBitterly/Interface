@@ -152,7 +152,7 @@ public class Admin extends VerticalLayout {
         Button creermodule = new Button("Créer" , event -> {
             String nom = nommodule.getValue();
             Integer nbmax1 = nbmax.getValue();
-            Integer nbmin1 = nbmin.getValue();
+            Integer nbmin1 = nbmin.getValue();//SALUT
             try{
             int numbermax = nbmax1;
             try{
