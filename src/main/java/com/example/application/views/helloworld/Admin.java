@@ -132,7 +132,7 @@ public class Admin extends VerticalLayout {
              try{
             int horraire1 = Integer.parseInt(annee1);
                  try {
-                     SupprimeLigne.supprimeGroupeModule(con, horraire);
+                     SupprimeLigne.supprimeSemestre(con, horraire1, horraire);
                  } catch (SQLException ex) {
                      Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                  }}
