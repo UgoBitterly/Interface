@@ -87,15 +87,15 @@ public class Admin extends VerticalLayout {
         //ici on défini le contenu à afficher pour chaque "tab" de l'interface
         //Semestre
         //creation d'un semestre
-        TextField numero = new TextField("Numéro");
-        TextField annee = new TextField("Année");
+        IntegerField numero = new IntegerField("Numéro");
+        IntegerField annee = new IntegerField("Année");
         Button creersemestre = new Button("Créer", event -> {
-        String numero1 = numero.getValue();
-        String annee1= annee.getValue();
+        Integer numero1 = numero.getValue();
+        Integer annee1= annee.getValue();
         try{
-            int num = Integer.parseInt(numero1);
+            int num = numero1;
             try{
-            int anne= Integer.parseInt(annee1);
+            int anne= annee1;
             CreationLigne.createSemestre(con, anne, num);
         }
         catch (NumberFormatException ex){
@@ -107,13 +107,13 @@ public class Admin extends VerticalLayout {
         catch (NumberFormatException ex){
             ex.printStackTrace();
         }
-        numero.setValue("");
-            annee.setValue("");
+        numero.setValue(null);
+            annee.setValue(null);
             
         });
         Button rsemestre = new Button("Réinitialiser", event -> {
-            numero.setValue("");
-            annee.setValue("");
+            numero.setValue(null);
+            annee.setValue(null);
         });
         rsemestre.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationsemestre = new HorizontalLayout(numero,annee);
@@ -122,15 +122,15 @@ public class Admin extends VerticalLayout {
         buttonsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //supprimer un semestre
-        TextField semestreasupprimer = new TextField("Numéro du semestre");
-        TextField Anneesemestreasupprimer = new TextField("Année du semestre");
+        IntegerField semestreasupprimer = new IntegerField("Numéro du semestre");
+        IntegerField anneesemestreasupprimer = new IntegerField("Année du semestre");
         Button effacersemestre = new Button("Effacer",event -> {
-            String semestre1 = semestreasupprimer.getValue();
-            String annee1 = Anneesemestreasupprimer.getValue();
+            Integer semestre1 = semestreasupprimer.getValue();
+            Integer annee1 = anneesemestreasupprimer.getValue();
              try{
-            int horraire = Integer.parseInt(semestre1);
+            int horraire = semestre1;
              try{
-            int horraire1 = Integer.parseInt(annee1);
+            int horraire1 = annee1;
                  try {
                      SupprimeLigne.supprimeSemestre(con, horraire1, horraire);
                  } catch (SQLException ex) {
@@ -178,11 +178,11 @@ public class Admin extends VerticalLayout {
         buttongroupe.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //supprimer un groupe de module
-        TextField groupeasupprimer = new TextField("Créneau du groupe");
+        IntegerField groupeasupprimer = new IntegerField("Créneau du groupe");
         Button effacergroupe = new Button("Effacer",event -> {
-             String creneau1 = groupeasupprimer.getValue();
+             Integer creneau1 = groupeasupprimer.getValue();
              try{
-            int horraire = Integer.parseInt(creneau1);
+            int horraire = creneau1;
                  try {
                      SupprimeLigne.supprimeGroupeModule(con, horraire);
                  } catch (SQLException ex) {
@@ -230,8 +230,8 @@ public class Admin extends VerticalLayout {
         }
             
            nommodule.setValue("");
-                nbmax.setValue(0);
-                nbmin.setValue(0);    
+                nbmax.setValue(null);
+                nbmin.setValue(null);    
               
         });
         Button rmodule = new Button("Réinitialiser", event -> {
@@ -246,7 +246,7 @@ public class Admin extends VerticalLayout {
         HorizontalLayout buttonmodule = new HorizontalLayout(creermodule,rmodule);
         buttonmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
-        //supprimer un module
+        //modifier ou supprimer un module
         TextField moduleasupprimer = new TextField("Module à supprimer");
         Button effacermodule = new Button("Effacer",event -> {
             String etudiant1 = moduleasupprimer.getValue();
@@ -254,11 +254,11 @@ public class Admin extends VerticalLayout {
                 SupprimeLigne.supprimeModule(con, etudiant1);
             } catch (SQLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            }  
         });
         effacermodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout supprimermodule = new HorizontalLayout(moduleasupprimer,effacermodule);
+        Button modifiermodule = new Button("Modifier");
+        HorizontalLayout supprimermodule = new HorizontalLayout(moduleasupprimer,modifiermodule,effacermodule);
         supprimermodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         
@@ -305,7 +305,7 @@ public class Admin extends VerticalLayout {
         HorizontalLayout buttonetudiant = new HorizontalLayout(creeretudiant,retudiant);
         buttonetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
-        //supprimer un etudiant
+        //supprimer ou modifier un etudiant
         TextField etudiantasupprimer = new TextField("Etudiant à supprimer");
         Button effaceretudiant = new Button("Effacer",event -> {
             String etudiant1 = etudiantasupprimer.getValue();
@@ -317,12 +317,14 @@ public class Admin extends VerticalLayout {
             
         });
         effaceretudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout supprimeretudiant = new HorizontalLayout(etudiantasupprimer,effaceretudiant);
+        Button modifieretudiant = new Button("Modifier");
+        HorizontalLayout supprimeretudiant = new HorizontalLayout(etudiantasupprimer,modifieretudiant,effaceretudiant);
         supprimeretudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //ici on affiche le menu correspondant en fonction du choix de création
 	if (tab.equals(accueil)) {
-            content.add(new Paragraph("Veuillez choisir ce que vous voulez créer ou supprimer en cliquant sur l'icone correspondant"));
+            content.add(new Paragraph("Veuillez choisir ce que vous voulez créer ou supprimer en cliquant sur l'icone correspondant."),
+            new Paragraph("Vous pouvez également modifier un module ou un étudiant."));
             
         } else if (tab.equals(semestre)) {
             content.add(new Paragraph("Veuillez entrer les attributs du nouveau semestre"),creationsemestre,buttonsemestre,
@@ -339,13 +341,13 @@ public class Admin extends VerticalLayout {
 	} else if (tab.equals(module)){
             content.add(new Paragraph("Veuillez entrer les attributs du nouveau module"),creationmodule,buttonmodule,
                     new Paragraph(""),new Paragraph(""),
-                    new Paragraph("Si vous souhaitez supprimer un module, veuillez rentrer son nom ci-dessous :"),
+                    new Paragraph("Si vous souhaitez modifier ou supprimer un module, veuillez rentrer son nom ci-dessous :"),
                     supprimermodule);
             
 	} else {
             content.add(new Paragraph("Veuillez entrer les attributs du nouvel étudiant"),creationetudiant,buttonetudiant,
                     new Paragraph(""),new Paragraph(""),
-                    new Paragraph("Si vous souhaitez supprimer un étudiant, veuillez rentrer son nom ci-dessous :"),
+                    new Paragraph("Si vous souhaitez modifier ou supprimer un étudiant, veuillez rentrer son nom ci-dessous :"),
                     supprimeretudiant);
         }
     }catch (Exception ex) {
