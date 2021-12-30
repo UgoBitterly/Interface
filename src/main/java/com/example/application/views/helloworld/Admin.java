@@ -18,7 +18,9 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.IntegerField;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -98,12 +100,31 @@ public class Admin extends VerticalLayout {
             int num = numero1;
             try{
             int anne= annee1;
-            CreationLigne.createSemestre(con, anne, num);
+            add(new Paragraph("salut toi"));
+            CreationLigne.createSemestre(con, anne, num);//problème de connection avec la bdd actuellement
+           add (new Paragraph ("ouf"));
+        try ( Statement st = con.createStatement()) {
+            ResultSet res = st.executeQuery(
+                    "select * from semestre");
+            while (res.next()) {
+                // on peut accéder à une colonne par son nom
+                int id = res.getInt("id");
+                Integer annee2 = res.getInt("annee");
+                // on peut aussi y accéder par son numéro
+                // !! numéro 1 pour la première
+                
+               
+                add(new Paragraph(id + "année du semestre" + annee));
+            }
+        
+    }
         }
         catch (NumberFormatException ex){
             ex.printStackTrace();
+            
         }       catch (SQLException ex) {
                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                    add(new Paragraph("probleme"));
                 }
         }
         catch (NumberFormatException ex){

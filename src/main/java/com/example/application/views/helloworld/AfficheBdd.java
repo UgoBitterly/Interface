@@ -40,6 +40,7 @@ public class AfficheBdd {
                 Integer annee = res.getInt("annee");
                 // on peut aussi y accéder par son numéro
                 // !! numéro 1 pour la première
+                
                
                 System.out.println(id + "année du semestre" + annee);
             }

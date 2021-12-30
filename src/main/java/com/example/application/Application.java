@@ -4,6 +4,7 @@ import com.example.application.views.helloworld.CreateTable;
 import com.example.application.views.helloworld.CreationLigne;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import static com.example.application.views.helloworld.Main.connectPostgresql;
+import com.example.application.views.helloworld.TableDrop;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ public class Application extends SpringBootServletInitializer {
            try ( Connection con = connectPostgresql(
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
+               TableDrop.DropTable(con);
                CreateTable.createTableEtudiant(con);
                 CreateTable.createTableModule(con);
          CreateTable.createTableSemestre(con);

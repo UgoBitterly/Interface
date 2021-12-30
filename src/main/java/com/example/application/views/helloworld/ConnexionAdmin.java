@@ -71,7 +71,18 @@ public class ConnexionAdmin {
         else{
             return("ok");
         }
-
+    }
+       public static String connexionAdmin1 (Connection con, String email, String mdp)
+        throws SQLException {
+        
       
+        int resulta = mdpAdminOk(con,email,mdp);
+        
+       if(resulta==-1){
+              return ("mot de passe ou identifiant incorrect");
+        }
+        else{
+            return("ok");
+        }
 }
 }
