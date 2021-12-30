@@ -35,6 +35,7 @@ public class Admin extends VerticalLayout {
     private final Tab groupe;
     private final Tab module;
     private final Tab etudiant;
+    private final Tab parametres;
     private final VerticalLayout content;
     private CreationEtudiant etudiant1;
     
@@ -45,8 +46,9 @@ public class Admin extends VerticalLayout {
 	groupe = new Tab("Groupe");
 	module = new Tab("Module");
         etudiant = new Tab("Etudiant");
+        parametres = new Tab("Paramètres");
 
-	Tabs tabs = new Tabs(accueil, semestre, groupe, module, etudiant);
+	Tabs tabs = new Tabs(accueil, semestre, groupe, module, etudiant, parametres);
         tabs.addThemeVariants(TabsVariant.LUMO_CENTERED);
 	tabs.addSelectedChangeListener((var event) ->
 		{
@@ -236,16 +238,20 @@ public class Admin extends VerticalLayout {
         });
         Button rmodule = new Button("Réinitialiser", event -> {
                 nommodule.setValue("");
-                nbmax.setValue(0);
-                nbmin.setValue(0);
+                nbmax.setValue(null);
+                nbmin.setValue(null);
                 choixgroupemodule.setValue("");
         });
         rmodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationmodule = new HorizontalLayout(nommodule,nbmax,nbmin,choixgroupemodule);
         creationmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        IntegerField numerodusemestre = new IntegerField("Numéro du semestre");
+        IntegerField anneedusemestre = new IntegerField("Année");
+        HorizontalLayout semestredumodule = new HorizontalLayout(numerodusemestre,anneedusemestre);
+        semestredumodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         HorizontalLayout buttonmodule = new HorizontalLayout(creermodule,rmodule);
         buttonmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-        
+                
         //modifier ou supprimer un module
         TextField moduleasupprimer = new TextField("Module à supprimer");
         Button effacermodule = new Button("Effacer",event -> {
@@ -321,34 +327,48 @@ public class Admin extends VerticalLayout {
         HorizontalLayout supprimeretudiant = new HorizontalLayout(etudiantasupprimer,modifieretudiant,effaceretudiant);
         supprimeretudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
+        //Paramètres
+        Button effacerinscription = new Button("Effacer Inscription");
+        effacerinscription.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_ERROR); //pour que ça soit en rouge
+        HorizontalLayout effacerinscriptionsemestre = new HorizontalLayout(effacerinscription);
+        effacerinscriptionsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
+        
         //ici on affiche le menu correspondant en fonction du choix de création
 	if (tab.equals(accueil)) {
             content.add(new Paragraph("Veuillez choisir ce que vous voulez créer ou supprimer en cliquant sur l'icone correspondant."),
             new Paragraph("Vous pouvez également modifier un module ou un étudiant."));
             
         } else if (tab.equals(semestre)) {
-            content.add(new Paragraph("Veuillez entrer les attributs du nouveau semestre"),creationsemestre,buttonsemestre,
+            content.add(new Paragraph("Veuillez entrer les attributs du nouveau semestre :"),creationsemestre,buttonsemestre,
                     new Paragraph(""),new Paragraph(""),//je mets ça pour sauter deux lignes
                     new Paragraph("Si vous souhaitez supprimer un semestre, veuillez rentrer son numéro ci-dessous :"),
                     supprimersemestre);
             
 	} else if (tab.equals(groupe)) {
-            content.add(new Paragraph("Veuillez entrer les attributs du nouveau groupe"),creationgroupe,buttongroupe,
+            content.add(new Paragraph("Veuillez entrer les attributs du nouveau groupe :"),creationgroupe,buttongroupe,
                     new Paragraph(""),new Paragraph(""), 
                     new Paragraph("Si vous souhaitez supprimer un groupe de module, veuillez rentrer son créneau ci-dessous :"),
                     supprimergroupe);
             
 	} else if (tab.equals(module)){
-            content.add(new Paragraph("Veuillez entrer les attributs du nouveau module"),creationmodule,buttonmodule,
+            content.add(new Paragraph("Veuillez entrer les attributs du nouveau module, ainsi que le semestre auquel il appartient :"),
+                    creationmodule,semestredumodule,buttonmodule,
                     new Paragraph(""),new Paragraph(""),
                     new Paragraph("Si vous souhaitez modifier ou supprimer un module, veuillez rentrer son nom ci-dessous :"),
                     supprimermodule);
             
-	} else {
-            content.add(new Paragraph("Veuillez entrer les attributs du nouvel étudiant"),creationetudiant,buttonetudiant,
+	} else if (tab.equals(etudiant)){
+            content.add(new Paragraph("Veuillez entrer les attributs du nouvel étudiant :"),creationetudiant,buttonetudiant,
                     new Paragraph(""),new Paragraph(""),
                     new Paragraph("Si vous souhaitez modifier ou supprimer un étudiant, veuillez rentrer son nom ci-dessous :"),
                     supprimeretudiant);
+        } else {
+            content.add(new Paragraph("La fonction 'Effacer l'inscription' vous permet de remettre à zéro la table inscription."),
+            new Paragraph("Cette table contient toutes les informations du semestre en cours, à savoir quel étudiant est inscrit à quel module."),
+            new Paragraph("Il est donc nécessaire de tout effacer à la fin de chaque semestre, elle sera remplie à nouveau le semestre suivant"),
+            new Paragraph("Enfin, tout ne sera pas effacé, la globalité sera stockée dans un historique disponible pour chaque étudiant."),
+            new Paragraph("Cette action est irréversible et ne doit être effectuée qu'une fois le semestre totalement achevé !!"),
+            effacerinscriptionsemestre);
         }
     }catch (Exception ex) {
             System.out.println("Probleme : " + ex);
