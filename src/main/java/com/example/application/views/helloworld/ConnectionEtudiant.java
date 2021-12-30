@@ -27,9 +27,7 @@ import java.util.logging.Logger;
 public class ConnectionEtudiant extends VerticalLayout {
     public ConnectionEtudiant() 
             throws SQLException {
-         try ( Connection con = Main.connectPostgresql(
-                "localhost", 5432,
-                "postgres", "postgres", "pass")) {
+        
         //creation du login avec adresse mail et mdp pour s'indentifier
         setId("connection-view");
         setAlignItems(Alignment.CENTER);
@@ -47,33 +45,34 @@ public class ConnectionEtudiant extends VerticalLayout {
                 email,
                 password,
                 new Button("Se connecter", event -> {
-                String email1= email.getValue();
+                                String email1= email.getValue();
                 String mdp = password.getValue();
-            try {
+            
                 add(new Paragraph ("ok"));
-                var resultat = ConnexionEtudiant.connexionEtudiant(con, email1, mdp);
+                try ( Connection con = Main.connectPostgresql(
+                "localhost", 5432,
+                "postgres", "postgres", "pass")) {
+                String resultat = ConnexionEtudiant.connexionEtudiant1(con, email1, mdp);
                add(new Paragraph ("salut"));
-                if (resultat=="ok"){
+                if ("ok".equals(resultat)){
                     add(new Paragraph ("tout est ok"));
                    
                 }
                 else {
                     add(new Paragraph ("mot de passe ou nom d'utilistaeur incorrect"));
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(ConnectionEtudiant.class.getName()).log(Level.SEVERE, null, ex);
-                add(new Paragraph ("probleme bdd"));
-            }
+             
                
                 
-                password.setValue("");    
+                password.setValue("");   }
+                catch (Exception ex) {
+            System.out.println("Probleme : " + ex);
+             add(new Paragraph ("probleme bdd2"));
+        }
             
                 })
                 
         ); }
-        catch (Exception ex) {
-            System.out.println("Probleme : " + ex);
-        }
+        
     
-}
 }

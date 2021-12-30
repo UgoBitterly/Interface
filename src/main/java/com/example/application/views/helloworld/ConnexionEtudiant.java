@@ -46,7 +46,7 @@ public class ConnexionEtudiant {
        public static int mdpEtudiantOk(Connection con, String email, String mdp)
             throws SQLException {
         try ( PreparedStatement pst = con.prepareStatement(
-                "select id from etudiant where motDePasse = ? and email= ?")) {
+                "select * from etudiant where motDePasse = ? and email= ?")) {
             pst.setString(1, mdp);
             pst.setString(2,email);
             ResultSet findP = pst.executeQuery();
@@ -72,6 +72,20 @@ public class ConnexionEtudiant {
             
         }
         else if(resulta==-1){
+              return ("mot de passe ou identifiant incorrect");
+        }
+        else{
+            return("ok");
+        }
+
+      
+}
+    public static String connexionEtudiant1 (Connection con, String email, String mdp)
+        throws SQLException {
+        
+      
+        int resulta = mdpEtudiantOk(con,email,mdp);
+         if(resulta==-1){
               return ("mot de passe ou identifiant incorrect");
         }
         else{
