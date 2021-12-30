@@ -123,7 +123,30 @@ public class Admin extends VerticalLayout {
         
         //supprimer un semestre
         TextField semestreasupprimer = new TextField("Numéro du semestre");
-        Button effacersemestre = new Button("Effacer");
+        TextField Anneesemestreasupprimer = new TextField("Année du semestre");
+        Button effacersemestre = new Button("Effacer",event -> {
+            String semestre1 = semestreasupprimer.getValue();
+            String annee1 = Anneesemestreasupprimer.getValue();
+             try{
+            int horraire = Integer.parseInt(semestre1);
+             try{
+            int horraire1 = Integer.parseInt(annee1);
+                 try {
+                     SupprimeLigne.supprimeGroupeModule(con, horraire);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                 }}
+                 catch (NumberFormatException ex){
+            ex.printStackTrace();
+        } 
+
+            }
+            catch (NumberFormatException ex){
+            ex.printStackTrace();
+            }
+            
+            
+        });
         effacersemestre.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout supprimersemestre = new HorizontalLayout(semestreasupprimer,effacersemestre);
         supprimersemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -156,7 +179,22 @@ public class Admin extends VerticalLayout {
         
         //supprimer un groupe de module
         TextField groupeasupprimer = new TextField("Créneau du groupe");
-        Button effacergroupe = new Button("Effacer");
+        Button effacergroupe = new Button("Effacer",event -> {
+             String creneau1 = groupeasupprimer.getValue();
+             try{
+            int horraire = Integer.parseInt(creneau1);
+                 try {
+                     SupprimeLigne.supprimeGroupeModule(con, horraire);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+            }
+            catch (NumberFormatException ex){
+            ex.printStackTrace();
+        } 
+            
+            
+        });
         effacergroupe.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout supprimergroupe = new HorizontalLayout(groupeasupprimer,effacergroupe);
         supprimergroupe.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -210,7 +248,15 @@ public class Admin extends VerticalLayout {
         
         //supprimer un module
         TextField moduleasupprimer = new TextField("Module à supprimer");
-        Button effacermodule = new Button("Effacer");
+        Button effacermodule = new Button("Effacer",event -> {
+            String etudiant1 = moduleasupprimer.getValue();
+            try {
+                SupprimeLigne.supprimeModule(con, etudiant1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        });
         effacermodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout supprimermodule = new HorizontalLayout(moduleasupprimer,effacermodule);
         supprimermodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -261,7 +307,15 @@ public class Admin extends VerticalLayout {
         
         //supprimer un etudiant
         TextField etudiantasupprimer = new TextField("Etudiant à supprimer");
-        Button effaceretudiant = new Button("Effacer");
+        Button effaceretudiant = new Button("Effacer",event -> {
+            String etudiant1 = etudiantasupprimer.getValue();
+            try {
+                SupprimeLigne.supprimeEtudiant(con, etudiant1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        });
         effaceretudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout supprimeretudiant = new HorizontalLayout(etudiantasupprimer,effaceretudiant);
         supprimeretudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
