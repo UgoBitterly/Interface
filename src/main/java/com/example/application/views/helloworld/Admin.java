@@ -1,6 +1,6 @@
 package com.example.application.views.helloworld;
 
-
+import java.util.Locale;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -191,12 +191,19 @@ public class Admin extends VerticalLayout {
         TextField nom = new TextField("Nom");
         TextField prenom = new TextField("Prénom");
         EmailField mail = new EmailField("Adresse mail INSA");
-        mail.setPlaceholder("utilisateur@insa-strasbourg.fr");
-        mail.setErrorMessage("Veuillez entrer une adresse mail INSA");
+        Button generermail = new Button("Générer adresse mail", event ->{
+            String prenomM=prenom.getValue();
+            String nomM=nom.getValue();
+            String prenomminuscule = prenomM.toLowerCase();
+            String nomminuscule = nomM.toLowerCase();
+            mail.setValue(prenomminuscule+"."+nomminuscule+"@insa-strasbourg.fr");
+        });
+        //mail.setPlaceholder("utilisateur@insa-strasbourg.fr");
+        //mail.setErrorMessage("Veuillez entrer une adresse mail INSA");
         TextField mdp = new TextField("Mot de Passe");
         DatePicker datenaissance = new DatePicker("Date de naissance");
         Button creeretudiant = new Button("Créer", event -> { 
-           String nom1 = nom.getValue();
+           String nom1=nom.getValue();
            String prenom1=prenom.getValue();
            String email1 = mail.getValue();
            String mdp1 = mdp.getValue();
@@ -219,7 +226,7 @@ public class Admin extends VerticalLayout {
            mdp.setValue("");
        });
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp,datenaissance);
+        HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,generermail,mail,mdp,datenaissance);
         creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         HorizontalLayout buttonetudiant = new HorizontalLayout(creeretudiant,retudiant);
         buttonetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
