@@ -1,6 +1,8 @@
 package com.example.application.views.helloworld;
 
 import com.example.application.views.MainLayout;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.NativeButton;
@@ -23,16 +25,20 @@ public class PageAccueil extends VerticalLayout {
         //avec les deux boutons etudiant et administrateur qui dirige vers les pages d'authentification respectives
         setAlignItems(Alignment.CENTER);
         
-        NativeButton admin = new NativeButton("Administrateur");
+        Button admin = new Button("Administrateur");
+        admin.addThemeVariants(ButtonVariant.LUMO_LARGE,ButtonVariant.LUMO_PRIMARY);
         admin.addClickListener(e ->
                 admin.getUI().ifPresent(ui ->
                         ui.navigate("connection1"))
         );
-        NativeButton etudiant = new NativeButton("Etudiant");
+
+        Button etudiant = new Button("Etudiant");
+        etudiant.addThemeVariants(ButtonVariant.LUMO_LARGE,ButtonVariant.LUMO_PRIMARY);
         etudiant.addClickListener(e ->
                 etudiant.getUI().ifPresent(ui ->
                         ui.navigate("connection2"))
         );
+
         HorizontalLayout choix = new HorizontalLayout(admin,etudiant);
         choix.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         add(
