@@ -111,7 +111,7 @@ public class MainLayout extends AppLayout {
 
     private List<RouterLink> createLinks() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
-                new MenuItemInfo("Connection", "la la-globe", AdminConnection.class),
+                new MenuItemInfo("ConnectionAdmin", "la la-globe", AdminConnection.class),
                 new MenuItemInfo ("ConnectionEtudiant","la la-globe", ConnectionEtudiant.class),
                 new MenuItemInfo ("PageAccueil", "la la-globe", PageAccueil.class),
                 new MenuItemInfo ("Administrateur","la la-globe",Admin.class),

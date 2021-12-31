@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author ugobitterly
  */
 
-@PageTitle("Connection")
+@PageTitle("ConnectionAdmin")
 @Route(value = "connection1", layout = MainLayout.class)
 public class AdminConnection extends VerticalLayout {
 
