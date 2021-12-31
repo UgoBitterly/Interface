@@ -21,9 +21,7 @@ import java.util.logging.Logger;
 @PageTitle("ConnectionAdmin")
 @Route(value = "connection1", layout = MainLayout.class)
 public class AdminConnection extends VerticalLayout {
-
-    public AdminConnection() 
-            throws SQLException {
+    public AdminConnection() throws SQLException {
          
         //creation du login avec adresse mail et mdp pour s'indentifier
         setId("connection-view");
@@ -37,41 +35,36 @@ public class AdminConnection extends VerticalLayout {
         email.setPattern("^.+@insa-strasbourg\\.fr$");
         add(email);
         var password = new PasswordField("Mot de passe");
+        Button connectionadmin = new Button("Se connecter");
+        connectionadmin.addClickListener(e -> { 
+                    String email1= email.getValue();
+                    String mdp = password.getValue();
+            
+                    add(new Paragraph ("ok"));
+                    try ( Connection con = Main.connectPostgresql(
+                    "localhost", 5432,
+                    "postgres", "postgres", "pass")) {
+                        String resultat = ConnexionEtudiant.connexionEtudiant1(con, email1, mdp);
+                        add(new Paragraph ("salut"));
+                        if ("ok".equals(resultat)){
+                               add(new Paragraph ("tout est ok"));
+                               connectionadmin.getUI().ifPresent(ui ->ui.navigate("admin"));
+                        }
+                        else {
+                            add(new Paragraph ("mot de passe ou nom d'utilistaeur incorrect"));
+                        }
+                        password.setValue("");
+                    }
+                    catch (Exception ex) {
+                        System.out.println("Probleme : " + ex);
+                        add(new Paragraph ("probleme bdd2"));
+                    }
+        });
         add(
         new H2("Connection en tant qu'administrateur"),
                 email,
                 password,
-                new Button("Se connecter", event -> {
-                                String email1= email.getValue();
-                String mdp = password.getValue();
-            
-                add(new Paragraph ("ok"));
-                try ( Connection con = Main.connectPostgresql(
-                "localhost", 5432,
-                "postgres", "postgres", "pass")) {
-                String resultat = ConnexionEtudiant.connexionEtudiant1(con, email1, mdp);
-               add(new Paragraph ("salut"));
-                if ("ok".equals(resultat)){
-                    add(new Paragraph ("tout est ok"));
-                   
-                }
-                else {
-                    add(new Paragraph ("mot de passe ou nom d'utilistaeur incorrect"));
-                }
-             
-               
-                
-                password.setValue("");   }
-                catch (Exception ex) {
-            System.out.println("Probleme : " + ex);
-             add(new Paragraph ("probleme bdd2"));
-        }
-            
-                })
-                
-       
-                
-        ); }
-      
-           
+                connectionadmin
+        ); 
     }
+}
