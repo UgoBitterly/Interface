@@ -349,7 +349,13 @@ public class Admin extends VerticalLayout {
         supprimeretudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //Paramètres
-        Button effacerinscription = new Button("Effacer Inscription");
+        Button effacerinscription = new Button("Effacer Inscription", event ->{
+            try {
+                SupprimeTable.supprimeInscription(con);
+            } catch (SQLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         effacerinscription.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_ERROR); //pour que ça soit en rouge
         HorizontalLayout effacerinscriptionsemestre = new HorizontalLayout(effacerinscription);
         effacerinscriptionsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
