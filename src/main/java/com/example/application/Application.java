@@ -2,6 +2,7 @@ package com.example.application;
 
 import com.example.application.views.helloworld.CreateTable;
 import com.example.application.views.helloworld.CreationLigne;
+import com.example.application.views.helloworld.CreationSchema;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import static com.example.application.views.helloworld.Main.connectPostgresql;
 import com.example.application.views.helloworld.TableDrop;
@@ -31,16 +32,10 @@ public class Application extends SpringBootServletInitializer {
            try ( Connection con = connectPostgresql(
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
-               TableDrop.DropTable(con);
-               CreateTable.createTableEtudiant(con);
-                CreateTable.createTableModule(con);
-         CreateTable.createTableSemestre(con);
-         CreateTable.createTableGroupeModule(con);
-         CreateTable.createTableAdmin(con);
-               LocalDate ld = LocalDate.of(1985, Month.MARCH, 23);
+               CreationSchema.createSchema(con);
+        LocalDate ld = LocalDate.of(1985, Month.MARCH, 23);
             java.sql.Date sqld = java.sql.Date.valueOf(ld);
            CreationLigne.createEtudiant(con,"matthieu","lut",sqld,"ugo.bietterly@insa-strasbourg.fr","mooo");
-        
     } catch (Exception ex) {
             System.out.println("Probleme : " + ex);
         }
