@@ -30,6 +30,7 @@ public class TableDrop {
       
     
  public static void DropTable(Connection con) throws SQLException {
+     con.setAutoCommit(false);
         //méthode permettant d'effacer une table de la base de donnée
        tabledrop(con,"etudiant");
        //tabledrop(con,"inscription");

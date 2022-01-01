@@ -33,13 +33,17 @@ public class CreationLigne {
                 """
         insert into etudiant (nom,prenom,datedenaissance,motdepasse,email)
           values (?,?,?,?,?)
-        """)) {
+        """)){
+            con.setAutoCommit(false);
+        
             pst.setString(1, nom);
             pst.setString(2, prenom);
             pst.setDate(3, datedenaissance);
             pst.setString(4, motdepasse);
             pst.setString(5,email);
             pst.executeUpdate();
+            con.commit();
+            
         }
     }
 
