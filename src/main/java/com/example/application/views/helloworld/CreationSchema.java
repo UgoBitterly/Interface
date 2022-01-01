@@ -63,7 +63,7 @@ public class CreationSchema {
                """);
             st.executeUpdate(
                """
-               create table Groupe(
+               create table GroupeModule(
                  id integer primary key generated always as identity,
                  creneau  INTEGER NOT NULL
                      
@@ -74,68 +74,47 @@ public class CreationSchema {
            
             st.executeUpdate(
             """
-            CREATE TABLE GroupeModule(
-              idGroupeSemestre INTEGER,
+            CREATE TABLE ModuleOuvert(
+              idSemestre INTEGER,
               idModule INTEGER)            
             """);
             st.executeUpdate(
             """
-            alter table GroupeModuleSemestre 
-              add constraint fk_GroupeModuleSemestre_idModule
+            alter table ModuleOuvert 
+              add constraint fk_ModuleOuvert_idModule
               foreign key(idModule) references Module(idModule)
               on delete restrict
               on update restrict
             """);
             st.executeUpdate(
             """
-            alter table GroupeModuleSemestre 
-              add constraint fk_GroupeModuleSemestre_idGroupeSemestre
-              foreign key(idGroupeSemestre) references GroupeSemestre(idGroupeSemestre)
+            alter table ModuelOuvert 
+              add constraint fk_ModuleOuvert_idSemestre
+              foreign key(idSemestre) references Semestre(idSemestre)
               on delete restrict
               on update restrict
             """);
             
+           
             st.executeUpdate(
             """
-            CREATE TABLE GroupeModule(
-              idGroupeSemestre INTEGER,
-              idModule INTEGER)            
-            """);
-            st.executeUpdate(
-            """
-            alter table GroupeModuleSemestre 
-              add constraint fk_GroupeModuleSemestre_idModule
-              foreign key(idModule) references Module(idModule)
-              on delete restrict
-              on update restrict
-            """);
-            st.executeUpdate(
-            """
-            alter table GroupeModuleSemestre 
-              add constraint fk_GroupeModuleSemestre_idGroupeSemestre
-              foreign key(idGroupeSemestre) references GroupeSemestre(idGroupeSemestre)
-              on delete restrict
-              on update restrict
-            """);
-            st.executeUpdate(
-            """
-            CREATE TABLE ModuleCreneau (
+            CREATE TABLE Creneau (
               idModule INTEGER,
               idGroupe INTEGER)
             """);
             st.executeUpdate(
             """
-            alter table ModuleCreneau 
-              add constraint fk_Eleve_Semestre_idModule
+            alter table Creneau 
+              add constraint fk_Creneau_idModule
               foreign key(idModule) references Module(idModule)
               on delete restrict
               on update restrict
             """);
             st.executeUpdate(
             """
-            alter table EleveSemestre
-              add constraint fk_ModuleCreneau_idGroupe
-              foreign key(idGroupe) references Groupe(idGroupe)
+            alter table Creneau
+              add constraint fk_Creneau_idGroupe
+              foreign key(idGroupe) references GroupeModule(idGroupeModule)
               on delete restrict
               on update restrict
             """);
@@ -143,15 +122,14 @@ public class CreationSchema {
             st.executeUpdate(
             """
             CREATE TABLE HistoriqueModules (
-              idEleve INTEGER,
-              idModule INTEGER,
-              idSemestre INTEGER)
+              idEtudiant INTEGER,
+              idModule INTEGER)
             """);
             st.executeUpdate(
             """
             alter table HistoriqueModules
-              add constraint fk_Historique_Modules_idEleve
-              foreign key(idEleve) references Eleve(idEleve)
+              add constraint fk_Historique_Modules_idEtudiant
+              foreign key(idEtudiant) references Etudiant(idEtudiant)
               on delete restrict
               on update restrict
             """);
@@ -159,8 +137,30 @@ public class CreationSchema {
             """
             alter table HistoriqueModules
               add constraint fk_Historique_Modules_idModule
-              foreign key(idModule)
-              references Module(idModule) on delete restrict
+              foreign key(idModule) references Module(idModule) 
+              on delete restrict
+              on update restrict
+            """);
+             st.executeUpdate(
+            """
+            CREATE TABLE Inscription (
+              idEtudiant INTEGER,
+              idModule INTEGER)
+            """);
+            st.executeUpdate(
+            """
+            alter table Inscription
+              add constraint fk_Inscription_idEtudiant
+              foreign key(idEtudiant) references Etudiant(idEtudiant)
+              on delete restrict
+              on update restrict
+            """);
+            st.executeUpdate(
+            """
+            alter table Inscription
+              add constraint fk_Inscription_idModule
+              foreign key(idModule) references Module(idModule) 
+              on delete restrict
               on update restrict
             """);
             // si j'arrive ici, c'est que tout s'est bien passé
