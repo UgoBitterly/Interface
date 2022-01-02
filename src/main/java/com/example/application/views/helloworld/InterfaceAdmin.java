@@ -178,11 +178,11 @@ public class InterfaceAdmin extends VerticalLayout {
         
         //Groupe (de modules)
         //creation d'un groupe de module
-        TextField creneau = new TextField("Créneau horaire");
+        IntegerField creneau = new IntegerField("Créneau horaire");
         Button creergroupe = new Button("Créer", event -> {
-            String creneau1 = creneau.getValue();
+            Integer creneau1 = creneau.getValue();
             try{
-            int horraire = Integer.parseInt(creneau1);
+            int horraire = creneau1;
             CreationLigne.createGroupeModule(con, horraire);
             }
             catch (NumberFormatException ex){
@@ -190,10 +190,10 @@ public class InterfaceAdmin extends VerticalLayout {
         }   catch (SQLException ex) { 
                 Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             
-        creneau.setValue("");} 
+        creneau.setValue(null);} 
         });
         Button rgroupe = new Button("Réinitialiser", event -> {
-                creneau.setValue("");
+                creneau.setValue(null);
         });
         rgroupe.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationgroupe = new HorizontalLayout(creneau);
@@ -231,12 +231,12 @@ public class InterfaceAdmin extends VerticalLayout {
         nbmax.setPlaceholder("Entier max");
         IntegerField nbmin = new IntegerField("Capacité minimale");
         nbmin.setPlaceholder("Entier min");
-        TextField choixgroupemodule = new TextField("Groupe du module");
+        IntegerField choixgroupemodule = new IntegerField("Groupe du module");
         Button creermodule = new Button("Créer" , event -> {
             String nom = nommodule.getValue();
             Integer nbmax1 = nbmax.getValue();
             Integer nbmin1 = nbmin.getValue();
-            String choixgroupe = choixgroupemodule.getValue();
+            Integer choixgroupe = choixgroupemodule.getValue();
             try{
             int numbermax = nbmax1;
             try{
@@ -262,7 +262,7 @@ public class InterfaceAdmin extends VerticalLayout {
                 nommodule.setValue("");
                 nbmax.setValue(null);
                 nbmin.setValue(null);
-                choixgroupemodule.setValue("");
+                choixgroupemodule.setValue(null);
         });
         rmodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationmodule = new HorizontalLayout(nommodule,nbmax,nbmin,choixgroupemodule);

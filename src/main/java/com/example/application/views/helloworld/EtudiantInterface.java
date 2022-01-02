@@ -10,6 +10,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
+import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 /**
  *
@@ -49,8 +51,11 @@ public class EtudiantInterface extends VerticalLayout {
 	content.removeAll();
         //Groupe 1
         TextField modulesgroupe1 = new TextField("Modules");
-        TextField mailetudiant1 = new TextField("Adresse mail");
-        TextField mdpetudiant1 = new TextField("Mot de passe");
+        EmailField mailetudiant1 = new EmailField("Adresse mail");
+        mailetudiant1.setPlaceholder("eleve@insa-strasbourg.fr");
+        mailetudiant1.setErrorMessage("Veuillez entrer une adresse mail INSA");
+        mailetudiant1.setPattern("^.+@insa-strasbourg\\.fr$");
+        PasswordField mdpetudiant1 = new PasswordField("Mot de passe");
         Button valider1 = new Button("Valider inscription à ce module");
         valider1.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         HorizontalLayout confirmation1 = new HorizontalLayout(mailetudiant1,mdpetudiant1,valider1);
@@ -58,17 +63,23 @@ public class EtudiantInterface extends VerticalLayout {
         
         //Groupe2
         TextField modulesgroupe2 = new TextField("Modules");
-        TextField mailetudiant2 = new TextField("Adresse mail");
-        TextField mdpetudiant2 = new TextField("Mot de passe");
+        EmailField mailetudiant2 = new EmailField("Adresse mail");
+        mailetudiant2.setPlaceholder("eleve@insa-strasbourg.fr");
+        mailetudiant2.setErrorMessage("Veuillez entrer une adresse mail INSA");
+        mailetudiant2.setPattern("^.+@insa-strasbourg\\.fr$");
+        PasswordField mdpetudiant2 = new PasswordField("Mot de passe");
         Button valider2 = new Button("Valider inscription à ce module");
-        valider1.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
+        valider2.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         HorizontalLayout confirmation2 = new HorizontalLayout(mailetudiant2,mdpetudiant2,valider2);
         confirmation2.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //Groupe3
         TextField modulesgroupe3 = new TextField("Modules");
-        TextField mailetudiant3 = new TextField("Adresse mail");
-        TextField mdpetudiant3 = new TextField("Mot de passe");
+        EmailField mailetudiant3 = new EmailField("Adresse mail");
+        mailetudiant3.setPlaceholder("eleve@insa-strasbourg.fr");
+        mailetudiant3.setErrorMessage("Veuillez entrer une adresse mail INSA");
+        mailetudiant3.setPattern("^.+@insa-strasbourg\\.fr$");
+        PasswordField mdpetudiant3 = new PasswordField("Mot de passe");
         Button valider3 = new Button("Valider inscription à ce module");
         valider3.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         HorizontalLayout confirmation3 = new HorizontalLayout(mailetudiant3,mdpetudiant3,valider3);
@@ -85,15 +96,18 @@ public class EtudiantInterface extends VerticalLayout {
                 new Paragraph("Veuillez en choisir un seul pour chaque groupe."),
                 new Paragraph("Choisissez bien et vérifiez avant de valider vos choix, pas de modifications possibles !"));
 	} else if (tab.equals(groupe1)) {
-                content.add(new Paragraph("Voici les modules proposés dans le groupe 1"),new Paragraph("Sélectionnez celui de votre choix"),modulesgroupe1,
+                content.add(new Paragraph("Entrez le nom du module que vous souhaitez suivre au semestre prochain, pour le groupe 1."),
+                        new Paragraph("Tenez bien compte des critères donnés sur la liste."),modulesgroupe1,
                         new Paragraph("Pour valider votre inscription à ce module, merci de renseigner les informations suivantes :"),
                         confirmation1);
 	} else if (tab.equals(groupe2)){
-		content.add(new Paragraph("Voici les modules proposés dans le groupe 2"),new Paragraph("Sélectionnez celui de votre choix"),modulesgroupe2,
+		content.add(new Paragraph("Entrez le nom du module que vous souhaitez suivre au semestre prochain, pour le groupe 2"),
+                        new Paragraph("Tenez bien compte des critères donnés sur la liste."),modulesgroupe2,
                         new Paragraph("Pour valider votre inscription à ce module, merci de renseigner les informations suivantes :"),
                         confirmation2);
 	} else if (tab.equals(groupe3)){
-                content.add(new Paragraph("Voici les modules proposés dans le groupe 3"),new Paragraph("Sélectionnez celui de votre choix"),modulesgroupe3,
+                content.add(new Paragraph("Entrez le nom du module que vous souhaitez suivre au semestre prochain, pour le groupe 3"),
+                        new Paragraph("Tenez bien compte des critères donnés sur la liste."),modulesgroupe3,
                         new Paragraph("Pour valider votre inscription à ce module, merci de renseigner les informations suivantes :"),
                         confirmation3);
         } else {
