@@ -1,11 +1,11 @@
 package com.example.application.views;
 
 import com.example.application.views.about.AboutView;
-import com.example.application.views.helloworld.AdminConnection;
-import com.example.application.views.helloworld.ConnectionEtudiant;
-import com.example.application.views.helloworld.PageAccueil;
+import com.example.application.views.helloworld.AdminConnectionInterface;
+import com.example.application.views.helloworld.ConnectionEtudiantInterface;
+import com.example.application.views.helloworld.PageAccueilInterface;
 import com.example.application.views.helloworld.EtudiantInterface;
-import com.example.application.views.helloworld.Admin;
+import com.example.application.views.helloworld.InterfaceAdmin;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -111,10 +111,10 @@ public class MainLayout extends AppLayout {
 
     private List<RouterLink> createLinks() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
-                new MenuItemInfo("ConnectionAdmin", "la la-globe", AdminConnection.class),
-                new MenuItemInfo ("ConnectionEtudiant","la la-globe", ConnectionEtudiant.class),
-                new MenuItemInfo ("PageAccueil", "la la-globe", PageAccueil.class),
-                new MenuItemInfo ("Administrateur","la la-globe",Admin.class),
+                new MenuItemInfo("ConnectionAdmin", "la la-globe", AdminConnectionInterface.class),
+                new MenuItemInfo ("ConnectionEtudiant","la la-globe", ConnectionEtudiantInterface.class),
+                new MenuItemInfo ("PageAccueil", "la la-globe", PageAccueilInterface.class),
+                new MenuItemInfo ("Administrateur","la la-globe",InterfaceAdmin.class),
                 new MenuItemInfo ("Etudiant","la la-globe",EtudiantInterface.class),
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
 

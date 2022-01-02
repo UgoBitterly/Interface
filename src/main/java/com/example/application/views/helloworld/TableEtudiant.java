@@ -13,6 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//utile pour la création de l'objet étudiant
 public class TableEtudiant {
      public static void createTableEtudiant(Connection con) throws SQLException {
         try ( Statement st = con.createStatement()) {

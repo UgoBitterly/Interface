@@ -11,6 +11,8 @@ import java.sql.SQLException;
  *
  * @author matlu
  */
+//permet la verification de si un admin existe dans la bdd et si son mdp est bon 
+//(seul méthode mdpo et connexionEtudiant1 sont utilisés dans le programme)
 public class ConnexionAdmin {
     
       public static int trouveEmailAdmin(Connection con, String email)

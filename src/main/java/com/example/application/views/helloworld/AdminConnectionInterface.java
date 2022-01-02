@@ -17,11 +17,12 @@ import java.util.logging.Logger;
  *
  * @author ugobitterly
  */
+//interface connection admin
 
 @PageTitle("ConnectionAdmin")
 @Route(value = "connection1", layout = MainLayout.class)
-public class AdminConnection extends VerticalLayout {
-    public AdminConnection() throws SQLException {
+public class AdminConnectionInterface extends VerticalLayout {
+    public AdminConnectionInterface() throws SQLException {
          
         //creation du login avec adresse mail et mdp pour s'indentifier
         setId("connection-view");
@@ -41,7 +42,7 @@ public class AdminConnection extends VerticalLayout {
                     String mdp = password.getValue();
             
                     add(new Paragraph ("ok"));
-                    try ( Connection con = Main.connectPostgresql(
+                    try ( Connection con = MainTestPgAdmin.connectPostgresql(
                     "localhost", 5432,
                     "postgres", "postgres", "pass")) {
                         String resultat = ConnexionEtudiant.connexionEtudiant1(con, email1, mdp);

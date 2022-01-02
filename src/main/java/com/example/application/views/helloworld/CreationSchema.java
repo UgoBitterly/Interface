@@ -13,6 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//création des tables avec un schéma
 public class CreationSchema {
    
        public static void createSchema(Connection con) throws SQLException {

@@ -15,6 +15,7 @@ import com.vaadin.flow.component.textfield.TextField;
  *
  * @author ugobitterly
  */
+//interafce étudiant
 @PageTitle("Etudiant")
 @Route(value = "etudiant", layout = MainLayout.class)
 public class EtudiantInterface extends VerticalLayout {

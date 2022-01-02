@@ -4,7 +4,7 @@ import com.example.application.views.helloworld.CreateTable;
 import com.example.application.views.helloworld.CreationLigne;
 import com.example.application.views.helloworld.CreationSchema;
 import com.vaadin.flow.component.dependency.NpmPackage;
-import static com.example.application.views.helloworld.Main.connectPostgresql;
+import static com.example.application.views.helloworld.MainTestPgAdmin.connectPostgresql;
 import com.example.application.views.helloworld.TableDrop;
 import java.sql.Connection;
 import java.sql.DriverManager;

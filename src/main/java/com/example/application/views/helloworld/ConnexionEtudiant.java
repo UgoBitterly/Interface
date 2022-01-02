@@ -5,7 +5,7 @@
  */
 package com.example.application.views.helloworld;
 
-import fr.lutz.projetinfoS3.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +17,8 @@ import java.sql.SQLException;
  *
  * @author matlu
  */
+//permet la verification de si un etudiant existe dans la bdd et si son mdp est bon 
+//(seul méthode mdpo et connexionEtudiant1 sont utilisés dans le programme)
 public class ConnexionEtudiant {
     
       public static int trouveEmailEtudiant(Connection con, String email)

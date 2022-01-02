@@ -1,7 +1,7 @@
 package com.example.application.views.helloworld;
 
 import com.example.application.views.MainLayout;
-import static com.example.application.views.helloworld.Admin.connectPostgresql;
+import static com.example.application.views.helloworld.InterfaceAdmin.connectPostgresql;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
@@ -22,10 +22,11 @@ import java.util.logging.Logger;
  *
  * @author ugobitterly
  */
+//interface connection etudiant
 @PageTitle("ConnectionEtudiant")
 @Route(value = "connection2", layout = MainLayout.class)
-public class ConnectionEtudiant extends VerticalLayout {
-    public ConnectionEtudiant() 
+public class ConnectionEtudiantInterface extends VerticalLayout {
+    public ConnectionEtudiantInterface() 
             throws SQLException {
         
         //creation du login avec adresse mail et mdp pour s'indentifier
@@ -49,7 +50,7 @@ public class ConnectionEtudiant extends VerticalLayout {
                 String mdp = password.getValue();
             
                 add(new Paragraph ("ok"));
-                try ( Connection con = Main.connectPostgresql(
+                try ( Connection con = MainTestPgAdmin.connectPostgresql(
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
                 String resultat = ConnexionEtudiant.connexionEtudiant1(con, email1, mdp);

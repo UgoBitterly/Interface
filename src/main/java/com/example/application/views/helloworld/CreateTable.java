@@ -13,6 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//création de table par méthode
 public class CreateTable {
      public static void createTableEtudiant(Connection con) throws SQLException {
         try ( Statement st = con.createStatement()) {

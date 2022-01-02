@@ -13,6 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//permet de supprimer des lignes de tables
 public class SupprimeLigne {
           public static void supprimeGroupeModule(Connection con,
             Integer n ) throws SQLException {

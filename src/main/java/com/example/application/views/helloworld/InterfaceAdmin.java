@@ -28,10 +28,11 @@ import java.util.logging.Logger;
  *
  * @author ugobitterly
  */
+//interafce administrateur
 
 @PageTitle("Administrateur")
 @Route(value = "admin", layout = MainLayout.class)
-public class Admin extends VerticalLayout {
+public class InterfaceAdmin extends VerticalLayout {
     private final Tab accueil;
     private final Tab semestre;
     private final Tab groupe;
@@ -42,7 +43,7 @@ public class Admin extends VerticalLayout {
     private CreationEtudiant etudiant1;
     
     
-    public Admin() throws SQLException {
+    public InterfaceAdmin() throws SQLException {
         accueil = new Tab("Accueil");
         semestre = new Tab("Semestre");
 	groupe = new Tab("Groupe");
@@ -57,7 +58,7 @@ public class Admin extends VerticalLayout {
             try {
                 setContent(event.getSelectedTab());
             } catch (SQLException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 	);
@@ -123,7 +124,7 @@ public class Admin extends VerticalLayout {
             ex.printStackTrace();
             
         }       catch (SQLException ex) {
-                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
                     add(new Paragraph("probleme"));
                 }
         }
@@ -157,7 +158,7 @@ public class Admin extends VerticalLayout {
                  try {
                      SupprimeLigne.supprimeSemestre(con, horraire1, horraire);
                  } catch (SQLException ex) {
-                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                     Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
                  }}
                  catch (NumberFormatException ex){
             ex.printStackTrace();
@@ -187,7 +188,7 @@ public class Admin extends VerticalLayout {
             catch (NumberFormatException ex){
             ex.printStackTrace();
         }   catch (SQLException ex) { 
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             
         creneau.setValue("");} 
         });
@@ -209,7 +210,7 @@ public class Admin extends VerticalLayout {
                  try {
                      SupprimeLigne.supprimeGroupeModule(con, horraire);
                  } catch (SQLException ex) {
-                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                     Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
                  }
             }
             catch (NumberFormatException ex){
@@ -245,7 +246,7 @@ public class Admin extends VerticalLayout {
         catch (NumberFormatException ex){
             ex.printStackTrace();
         }       catch (SQLException ex) {
-                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }
         catch (NumberFormatException ex){
@@ -280,7 +281,7 @@ public class Admin extends VerticalLayout {
             try {
                 SupprimeLigne.supprimeModule(con, etudiant1);
             } catch (SQLException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }  
         });
         effacermodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
@@ -312,7 +313,7 @@ public class Admin extends VerticalLayout {
            // try {
                // CreationLigne.createEtudiant(con, nom1, prenom1, date1, email1, mdp1);
             //} catch (SQLException ex) {
-               //Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+               //Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
           // }
           
         nom.setValue("");
@@ -339,7 +340,7 @@ public class Admin extends VerticalLayout {
             try {
                 SupprimeLigne.supprimeEtudiant(con, etudiant1);
             } catch (SQLException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         });
@@ -353,7 +354,7 @@ public class Admin extends VerticalLayout {
             try {
                 SupprimeTable.supprimeInscription(con);
             } catch (SQLException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         effacerinscription.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_ERROR); //pour que ça soit en rouge

@@ -13,6 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//méthodes permettant de supprimer des tables complètes (utilent pour inscription)
 public class SupprimeTable {
             public static void supprimeInscription(Connection con) throws SQLException {  
       try {  

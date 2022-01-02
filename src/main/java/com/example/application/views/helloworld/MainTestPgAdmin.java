@@ -7,7 +7,7 @@ package com.example.application.views.helloworld;
 
 import com.example.application.views.helloworld.ConnexionAdmin;
 import com.example.application.views.helloworld.AfficheBdd;
-import fr.lutz.projetinfoS3.ConnexionEtudiant;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,9 +21,9 @@ import java.time.Month;
  *
  * @author matlu
  */
-public class Main {
+public class MainTestPgAdmin {
    
-
+//code qui permet de tester la création de table- ajout de linge-suppression ect dans pgadmin
 
     public static Connection connectPostgresql(String host, int port,
             String database, String user, String pass)

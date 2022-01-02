@@ -13,6 +13,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//permet de modifier des données de la bdd
 public class ModifieBdd {
                public static void changeNomEtudiant(Connection con,
             String nouveaunom, String nomachange ) throws SQLException {

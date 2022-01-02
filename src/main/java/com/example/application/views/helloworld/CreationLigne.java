@@ -13,6 +13,7 @@ import java.sql.SQLException;
  *
  * @author matlu
  */
+//Insertion d'éléments dans les tables
 public class CreationLigne {
     public static void createModuleOuvert(Connection con,
            Integer idsemestre, Integer idmodule) throws SQLException {

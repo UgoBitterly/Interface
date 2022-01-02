@@ -14,6 +14,7 @@ import java.sql.Statement;
  *
  * @author matlu
  */
+//méthode permettant d'afficher les bdd sur la commande netbeans
 public class AfficheBdd {
       public static void afficheEtudiant(Connection con)
             throws SQLException {

@@ -14,6 +14,7 @@ import java.sql.SQLException;
  *
  * @author matlu
  */
+//création de l'objet étudiant (pas utilisé dans le projet)
 public class CreationEtudiant {
    protected int id;
    protected String nom, prenom, email,mdp;

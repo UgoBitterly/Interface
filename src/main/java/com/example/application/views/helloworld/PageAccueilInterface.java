@@ -16,11 +16,12 @@ import com.vaadin.flow.router.RouteAlias;
  *
  * @author ugobitterly
  */
+//interface page acceuil
 @PageTitle("PageAccueil")
 @Route(value = "pageaccueil")
 @RouteAlias(value = "", layout = MainLayout.class)
-public class PageAccueil extends VerticalLayout {
-    public PageAccueil(){
+public class PageAccueilInterface extends VerticalLayout {
+    public PageAccueilInterface(){
         //dans cette classe, on crée "simplement" l'interface d'accueil 
         //avec les deux boutons etudiant et administrateur qui dirige vers les pages d'authentification respectives
         setAlignItems(Alignment.CENTER);
