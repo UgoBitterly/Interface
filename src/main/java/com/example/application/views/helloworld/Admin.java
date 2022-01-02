@@ -171,7 +171,7 @@ public class Admin extends VerticalLayout {
             
         });
         effacersemestre.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout supprimersemestre = new HorizontalLayout(semestreasupprimer,effacersemestre);
+        HorizontalLayout supprimersemestre = new HorizontalLayout(semestreasupprimer,anneesemestreasupprimer,effacersemestre);
         supprimersemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         
