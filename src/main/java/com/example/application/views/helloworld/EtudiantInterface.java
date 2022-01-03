@@ -13,6 +13,15 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.UI;
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.server.InitialPageSettings.Position;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
 /**
  *
  * @author ugobitterly
@@ -58,9 +67,6 @@ public class EtudiantInterface extends VerticalLayout {
         PasswordField mdpetudiant1 = new PasswordField("Mot de passe");
         Button valider1 = new Button("Valider inscription à ce module");
         valider1.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
-        valider1.addClickListener(clickEvent ->{
-            add(new Paragraph("Votre inscription à ce module a bien été prise en compte."));
-        });
         HorizontalLayout confirmation1 = new HorizontalLayout(mailetudiant1,mdpetudiant1,valider1);
         confirmation1.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
@@ -72,9 +78,6 @@ public class EtudiantInterface extends VerticalLayout {
         mailetudiant2.setPattern("^.+@insa-strasbourg\\.fr$");
         PasswordField mdpetudiant2 = new PasswordField("Mot de passe");
         Button valider2 = new Button("Valider inscription à ce module");
-        valider2.addClickListener(clickEvent ->{
-            add(new Paragraph("Votre inscription à ce module a bien été prise en compte."));
-        });
         valider2.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         HorizontalLayout confirmation2 = new HorizontalLayout(mailetudiant2,mdpetudiant2,valider2);
         confirmation2.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -88,9 +91,6 @@ public class EtudiantInterface extends VerticalLayout {
         PasswordField mdpetudiant3 = new PasswordField("Mot de passe");
         Button valider3 = new Button("Valider inscription à ce module");
         valider3.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
-        valider3.addClickListener(clickEvent ->{
-            add(new Paragraph("Votre inscription à ce module a bien été prise en compte."));
-        });
         HorizontalLayout confirmation3 = new HorizontalLayout(mailetudiant3,mdpetudiant3,valider3);
         confirmation3.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         

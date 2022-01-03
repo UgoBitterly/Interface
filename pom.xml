@@ -178,7 +178,12 @@
             <artifactId>postgresql</artifactId>
             <version>42.3.0</version>
  </dependency>
-
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>hbncontainer</artifactId>
+            <version>1.0.1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
