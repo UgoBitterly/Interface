@@ -50,7 +50,7 @@ public class EtudiantInterface extends VerticalLayout {
     private void setContent(Tab tab) {
 	content.removeAll();
         //Groupe 1
-        TextField modulesgroupe1 = new TextField("Modules");
+        TextField modulesgroupe1 = new TextField("Module");
         EmailField mailetudiant1 = new EmailField("Adresse mail");
         mailetudiant1.setPlaceholder("eleve@insa-strasbourg.fr");
         mailetudiant1.setErrorMessage("Veuillez entrer une adresse mail INSA");
@@ -58,23 +58,29 @@ public class EtudiantInterface extends VerticalLayout {
         PasswordField mdpetudiant1 = new PasswordField("Mot de passe");
         Button valider1 = new Button("Valider inscription à ce module");
         valider1.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
+        valider1.addClickListener(clickEvent ->{
+            add(new Paragraph("Votre inscription à ce module a bien été prise en compte."));
+        });
         HorizontalLayout confirmation1 = new HorizontalLayout(mailetudiant1,mdpetudiant1,valider1);
         confirmation1.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //Groupe2
-        TextField modulesgroupe2 = new TextField("Modules");
+        TextField modulesgroupe2 = new TextField("Module");
         EmailField mailetudiant2 = new EmailField("Adresse mail");
         mailetudiant2.setPlaceholder("eleve@insa-strasbourg.fr");
         mailetudiant2.setErrorMessage("Veuillez entrer une adresse mail INSA");
         mailetudiant2.setPattern("^.+@insa-strasbourg\\.fr$");
         PasswordField mdpetudiant2 = new PasswordField("Mot de passe");
         Button valider2 = new Button("Valider inscription à ce module");
+        valider2.addClickListener(clickEvent ->{
+            add(new Paragraph("Votre inscription à ce module a bien été prise en compte."));
+        });
         valider2.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         HorizontalLayout confirmation2 = new HorizontalLayout(mailetudiant2,mdpetudiant2,valider2);
         confirmation2.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //Groupe3
-        TextField modulesgroupe3 = new TextField("Modules");
+        TextField modulesgroupe3 = new TextField("Module");
         EmailField mailetudiant3 = new EmailField("Adresse mail");
         mailetudiant3.setPlaceholder("eleve@insa-strasbourg.fr");
         mailetudiant3.setErrorMessage("Veuillez entrer une adresse mail INSA");
@@ -82,6 +88,9 @@ public class EtudiantInterface extends VerticalLayout {
         PasswordField mdpetudiant3 = new PasswordField("Mot de passe");
         Button valider3 = new Button("Valider inscription à ce module");
         valider3.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
+        valider3.addClickListener(clickEvent ->{
+            add(new Paragraph("Votre inscription à ce module a bien été prise en compte."));
+        });
         HorizontalLayout confirmation3 = new HorizontalLayout(mailetudiant3,mdpetudiant3,valider3);
         confirmation3.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
