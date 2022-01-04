@@ -1,6 +1,8 @@
 package com.example.application.views.helloworld;
 
 import com.example.application.views.MainLayout;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -40,6 +42,7 @@ public class InterfaceAdmin extends VerticalLayout {
     private final Tab module;
     private final Tab etudiant;
     private final Tab parametres;
+    private final Tab deconnexion;
     private final VerticalLayout content;
     private CreationEtudiant etudiant1;
     
@@ -51,8 +54,9 @@ public class InterfaceAdmin extends VerticalLayout {
 	module = new Tab("Module");
         etudiant = new Tab("Etudiant");
         parametres = new Tab("Paramètres");
+        deconnexion = new Tab("Déconnexion");
 
-	Tabs tabs = new Tabs(accueil, semestre, groupe, module, etudiant, parametres);
+	Tabs tabs = new Tabs(accueil, semestre, groupe, module, etudiant, parametres,deconnexion);
         tabs.addThemeVariants(TabsVariant.LUMO_CENTERED);
 	tabs.addSelectedChangeListener((var event) ->
 		{
@@ -370,6 +374,15 @@ public class InterfaceAdmin extends VerticalLayout {
         HorizontalLayout effacerinscriptionsemestre = new HorizontalLayout(effacerinscription);
         effacerinscriptionsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
+        //Déconnexion
+        Button deco = new Button("Déconnexion",new Icon(VaadinIcon.EXCLAMATION_CIRCLE_O));
+        deco.addThemeVariants(ButtonVariant.LUMO_ERROR,ButtonVariant.LUMO_LARGE);
+        deco.getElement().setAttribute("aria-label", "Add item");
+        deco.addClickListener(e -> {
+            deco.getUI().ifPresent(ui -> ui.navigate("pageaccueil"));
+            Notification.show("Vous avez bien été déconnecté de votre session", 2500, Notification.Position.MIDDLE);
+        });
+        
         //ici on affiche le menu correspondant en fonction du choix de création
 	if (tab.equals(accueil)) {
             content.add(new Paragraph("Veuillez choisir ce que vous voulez créer ou supprimer en cliquant sur l'icone correspondant."),
@@ -399,13 +412,17 @@ public class InterfaceAdmin extends VerticalLayout {
                     new Paragraph(""),new Paragraph(""),
                     new Paragraph("Si vous souhaitez modifier ou supprimer un étudiant, veuillez rentrer son nom ci-dessous :"),
                     supprimeretudiant);
-        } else {
+        } else if (tab.equals(parametres)){
             content.add(new Paragraph("La fonction 'Effacer l'inscription' vous permet de remettre à zéro la table inscription."),
             new Paragraph("Cette table contient toutes les informations du semestre en cours, à savoir quel étudiant est inscrit à quel module."),
             new Paragraph("Il est donc nécessaire de tout effacer à la fin de chaque semestre, elle sera remplie à nouveau le semestre suivant"),
             new Paragraph("Enfin, tout ne sera pas effacé, la globalité sera stockée dans un historique disponible pour chaque étudiant."),
             new Paragraph("Cette action est irréversible et ne doit être effectuée qu'une fois le semestre totalement achevé !!"),
             effacerinscriptionsemestre);
+        } else if (tab.equals(deconnexion)){
+            content.add(new Paragraph("Si vous souhaitez vous déconnecter, merci de presser le bouton correspondant."),
+            new Paragraph("Toutes les actions que vous avez effectuées seront enregistrées et vous serez redirigé"
+                    + "vers la page d'accueil"),deco);
         }
     }catch (Exception ex) {
             System.out.println("Probleme : " + ex);
