@@ -340,7 +340,7 @@ public class InterfaceAdmin extends VerticalLayout {
            mdp.setValue("");
        });
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,mail,mdp,datenaissance);
+        HorizontalLayout creationetudiant = new HorizontalLayout(prenom,nom,mail,mdp,datenaissance);
         creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         HorizontalLayout buttonetudiant = new HorizontalLayout(generermail,creeretudiant,retudiant);
         buttonetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
