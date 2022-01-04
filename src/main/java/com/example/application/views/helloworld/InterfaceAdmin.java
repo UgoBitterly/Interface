@@ -144,6 +144,7 @@ public class InterfaceAdmin extends VerticalLayout {
             numero.setValue(null);
             annee.setValue(null);
         });
+        creersemestre.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         rsemestre.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationsemestre = new HorizontalLayout(numero,annee);
         creationsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -177,7 +178,7 @@ public class InterfaceAdmin extends VerticalLayout {
             
             
         });
-        effacersemestre.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        effacersemestre.addThemeVariants(ButtonVariant.LUMO_ERROR,ButtonVariant.LUMO_PRIMARY);
         HorizontalLayout supprimersemestre = new HorizontalLayout(semestreasupprimer,anneesemestreasupprimer,effacersemestre);
         supprimersemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
@@ -202,6 +203,7 @@ public class InterfaceAdmin extends VerticalLayout {
         Button rgroupe = new Button("Réinitialiser", event -> {
                 creneau.setValue(null);
         });
+        creergroupe.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         rgroupe.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationgroupe = new HorizontalLayout(creneau);
         creationsemestre.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -227,7 +229,7 @@ public class InterfaceAdmin extends VerticalLayout {
             
             
         });
-        effacergroupe.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        effacergroupe.addThemeVariants(ButtonVariant.LUMO_ERROR,ButtonVariant.LUMO_PRIMARY);
         HorizontalLayout supprimergroupe = new HorizontalLayout(groupeasupprimer,effacergroupe);
         supprimergroupe.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
@@ -273,6 +275,7 @@ public class InterfaceAdmin extends VerticalLayout {
                 nbmin.setValue(null);
                 choixgroupemodule.setValue(null);
         });
+        creermodule.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         rmodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationmodule = new HorizontalLayout(nommodule,nbmax,nbmin,choixgroupemodule);
         creationmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -294,7 +297,7 @@ public class InterfaceAdmin extends VerticalLayout {
                 Logger.getLogger(InterfaceAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }  
         });
-        effacermodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        effacermodule.addThemeVariants(ButtonVariant.LUMO_ERROR,ButtonVariant.LUMO_PRIMARY);
         Button modifiermodule = new Button("Modifier");
         HorizontalLayout supprimermodule = new HorizontalLayout(moduleasupprimer,modifiermodule,effacermodule);
         supprimermodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -338,6 +341,7 @@ public class InterfaceAdmin extends VerticalLayout {
            mail.setValue("");
            mdp.setValue("");
        });
+        creeretudiant.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationetudiant = new HorizontalLayout(nom,prenom,generermail,mail,mdp,datenaissance);
         creationetudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
@@ -356,7 +360,7 @@ public class InterfaceAdmin extends VerticalLayout {
             }
             
         });
-        effaceretudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        effaceretudiant.addThemeVariants(ButtonVariant.LUMO_ERROR,ButtonVariant.LUMO_PRIMARY);
         Button modifieretudiant = new Button("Modifier");
         HorizontalLayout supprimeretudiant = new HorizontalLayout(etudiantasupprimer,modifieretudiant,effaceretudiant);
         supprimeretudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
