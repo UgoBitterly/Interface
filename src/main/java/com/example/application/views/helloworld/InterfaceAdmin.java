@@ -14,6 +14,7 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.example.application.views.helloworld.CreationEtudiant;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.IntegerField;
 import java.sql.Connection;
@@ -95,18 +96,18 @@ public class InterfaceAdmin extends VerticalLayout {
         IntegerField numero = new IntegerField("Numéro");
         IntegerField annee = new IntegerField("Année");
         Button creersemestre = new Button("Créer", event -> {
-        Integer numero1 = numero.getValue();
-        Integer annee1= annee.getValue();
-        try{
-            int num = numero1;
+            Notification.show("Semestre créé !", 2500, Notification.Position.MIDDLE);
+            Integer numero1 = numero.getValue();
+            Integer annee1= annee.getValue();
             try{
-            int anne= annee1;
-            add(new Paragraph("salut toi"));
-            CreationLigne.createSemestre(con, anne, num);//problème de connection avec la bdd actuellement
-           add (new Paragraph ("ouf"));
-        try ( Statement st = con.createStatement()) {
-            ResultSet res = st.executeQuery(
-                    "select * from semestre");
+                int num = numero1;
+                try{
+                int anne= annee1;
+                add(new Paragraph("salut toi"));
+                CreationLigne.createSemestre(con, anne, num);//problème de connection avec la bdd actuellement
+                add (new Paragraph ("ouf"));
+            try ( Statement st = con.createStatement()) {
+                ResultSet res = st.executeQuery("select * from semestre");
             while (res.next()) {
                 // on peut accéder à une colonne par son nom
                 int id = res.getInt("id");
@@ -149,6 +150,7 @@ public class InterfaceAdmin extends VerticalLayout {
         IntegerField semestreasupprimer = new IntegerField("Numéro du semestre");
         IntegerField anneesemestreasupprimer = new IntegerField("Année du semestre");
         Button effacersemestre = new Button("Effacer",event -> {
+            Notification.show("Semestre supprimé !", 2500, Notification.Position.MIDDLE);
             Integer semestre1 = semestreasupprimer.getValue();
             Integer annee1 = anneesemestreasupprimer.getValue();
              try{
@@ -180,6 +182,7 @@ public class InterfaceAdmin extends VerticalLayout {
         //creation d'un groupe de module
         IntegerField creneau = new IntegerField("Créneau horaire");
         Button creergroupe = new Button("Créer", event -> {
+            Notification.show("Nouveau groupe de module créé !", 2500, Notification.Position.MIDDLE);
             Integer creneau1 = creneau.getValue();
             try{
             int horraire = creneau1;
@@ -204,6 +207,7 @@ public class InterfaceAdmin extends VerticalLayout {
         //supprimer un groupe de module
         IntegerField groupeasupprimer = new IntegerField("Créneau du groupe");
         Button effacergroupe = new Button("Effacer",event -> {
+            Notification.show("Groupe de modules supprimé !", 2500, Notification.Position.MIDDLE);
              Integer creneau1 = groupeasupprimer.getValue();
              try{
             int horraire = creneau1;
@@ -233,6 +237,7 @@ public class InterfaceAdmin extends VerticalLayout {
         nbmin.setPlaceholder("Entier min");
         IntegerField choixgroupemodule = new IntegerField("Groupe du module");
         Button creermodule = new Button("Créer" , event -> {
+            Notification.show("Module créé !", 2500, Notification.Position.MIDDLE);
             String nom = nommodule.getValue();
             Integer nbmax1 = nbmax.getValue();
             Integer nbmin1 = nbmin.getValue();
@@ -277,6 +282,7 @@ public class InterfaceAdmin extends VerticalLayout {
         //modifier ou supprimer un module
         TextField moduleasupprimer = new TextField("Module à supprimer");
         Button effacermodule = new Button("Effacer",event -> {
+            Notification.show("Module supprimé !", 2500, Notification.Position.MIDDLE);
             String etudiant1 = moduleasupprimer.getValue();
             try {
                 SupprimeLigne.supprimeModule(con, etudiant1);
@@ -304,7 +310,8 @@ public class InterfaceAdmin extends VerticalLayout {
         });
         TextField mdp = new TextField("Mot de Passe");
         DatePicker datenaissance = new DatePicker("Date de naissance");
-        Button creeretudiant = new Button("Créer", event -> { 
+        Button creeretudiant = new Button("Créer", event -> {
+           Notification.show("Nouvel étudiant créé !", 2500, Notification.Position.MIDDLE);
            String nom1=nom.getValue();
            String prenom1=prenom.getValue();
            String email1 = mail.getValue();
@@ -336,6 +343,7 @@ public class InterfaceAdmin extends VerticalLayout {
         //supprimer ou modifier un etudiant
         TextField etudiantasupprimer = new TextField("Etudiant à supprimer");
         Button effaceretudiant = new Button("Effacer",event -> {
+            Notification.show("Etudiant supprimé !", 2500, Notification.Position.MIDDLE);
             String etudiant1 = etudiantasupprimer.getValue();
             try {
                 SupprimeLigne.supprimeEtudiant(con, etudiant1);
@@ -351,6 +359,7 @@ public class InterfaceAdmin extends VerticalLayout {
         
         //Paramètres
         Button effacerinscription = new Button("Effacer Inscription", event ->{
+            Notification.show("Inscription effacé !", 2500, Notification.Position.MIDDLE);
             try {
                 SupprimeTable.supprimeInscription(con);
             } catch (SQLException ex) {
