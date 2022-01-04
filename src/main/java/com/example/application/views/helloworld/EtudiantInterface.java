@@ -61,7 +61,7 @@ public class EtudiantInterface extends VerticalLayout {
         mailetudiant1.setErrorMessage("Veuillez entrer une adresse mail INSA");
         mailetudiant1.setPattern("^.+@insa-strasbourg\\.fr$");
         PasswordField mdpetudiant1 = new PasswordField("Mot de passe");
-        Button valider1 = new Button("Valider inscription à ce module");
+        Button valider1 = new Button("Valider inscription à ce module",new Icon(VaadinIcon.CHECK_CIRCLE));
         valider1.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         valider1.addClickListener(e ->{
             Notification.show("Votre inscription a bien été prise en compte", 3000, Notification.Position.MIDDLE);
@@ -76,7 +76,7 @@ public class EtudiantInterface extends VerticalLayout {
         mailetudiant2.setErrorMessage("Veuillez entrer une adresse mail INSA");
         mailetudiant2.setPattern("^.+@insa-strasbourg\\.fr$");
         PasswordField mdpetudiant2 = new PasswordField("Mot de passe");
-        Button valider2 = new Button("Valider inscription à ce module");
+        Button valider2 = new Button("Valider inscription à ce module",new Icon(VaadinIcon.CHECK_CIRCLE));
         valider2.addThemeVariants(ButtonVariant.LUMO_PRIMARY,ButtonVariant.LUMO_SUCCESS);
         valider2.addClickListener(e ->{
             Notification.show("Votre inscription a bien été prise en compte", 3000, Notification.Position.MIDDLE);
@@ -91,7 +91,7 @@ public class EtudiantInterface extends VerticalLayout {
         mailetudiant3.setErrorMessage("Veuillez entrer une adresse mail INSA");
         mailetudiant3.setPattern("^.+@insa-strasbourg\\.fr$");
         PasswordField mdpetudiant3 = new PasswordField("Mot de passe");
-        Button valider3 = new Button("Valider inscription à ce module");
+        Button valider3 = new Button("Valider inscription à ce module",new Icon(VaadinIcon.CHECK_CIRCLE));
         valider3.addClickListener(e ->{
             Notification.show("Votre inscription a bien été prise en compte", 3000, Notification.Position.MIDDLE);
         });

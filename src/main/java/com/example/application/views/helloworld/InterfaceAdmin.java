@@ -153,7 +153,7 @@ public class InterfaceAdmin extends VerticalLayout {
         //supprimer un semestre
         IntegerField semestreasupprimer = new IntegerField("Numéro du semestre");
         IntegerField anneesemestreasupprimer = new IntegerField("Année du semestre");
-        Button effacersemestre = new Button("Effacer",event -> {
+        Button effacersemestre = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Semestre supprimé !", 2500, Notification.Position.MIDDLE);
             Integer semestre1 = semestreasupprimer.getValue();
             Integer annee1 = anneesemestreasupprimer.getValue();
@@ -210,7 +210,7 @@ public class InterfaceAdmin extends VerticalLayout {
         
         //supprimer un groupe de module
         IntegerField groupeasupprimer = new IntegerField("Créneau du groupe");
-        Button effacergroupe = new Button("Effacer",event -> {
+        Button effacergroupe = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Groupe de modules supprimé !", 2500, Notification.Position.MIDDLE);
              Integer creneau1 = groupeasupprimer.getValue();
              try{
@@ -285,7 +285,7 @@ public class InterfaceAdmin extends VerticalLayout {
                 
         //modifier ou supprimer un module
         TextField moduleasupprimer = new TextField("Module à supprimer");
-        Button effacermodule = new Button("Effacer",event -> {
+        Button effacermodule = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Module supprimé !", 2500, Notification.Position.MIDDLE);
             String etudiant1 = moduleasupprimer.getValue();
             try {
@@ -346,7 +346,7 @@ public class InterfaceAdmin extends VerticalLayout {
         
         //supprimer ou modifier un etudiant
         TextField etudiantasupprimer = new TextField("Etudiant à supprimer");
-        Button effaceretudiant = new Button("Effacer",event -> {
+        Button effaceretudiant = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Etudiant supprimé !", 2500, Notification.Position.MIDDLE);
             String etudiant1 = etudiantasupprimer.getValue();
             try {
@@ -362,7 +362,7 @@ public class InterfaceAdmin extends VerticalLayout {
         supprimeretudiant.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         
         //Paramètres
-        Button effacerinscription = new Button("Effacer Inscription", event ->{
+        Button effacerinscription = new Button("Effacer Inscription",new Icon(VaadinIcon.TRASH), event ->{
             Notification.show("Inscription effacé !", 2500, Notification.Position.MIDDLE);
             try {
                 SupprimeTable.supprimeInscription(con);
