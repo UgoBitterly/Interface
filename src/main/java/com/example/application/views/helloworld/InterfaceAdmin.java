@@ -155,6 +155,8 @@ public class InterfaceAdmin extends VerticalLayout {
         IntegerField anneesemestreasupprimer = new IntegerField("Année du semestre");
         Button effacersemestre = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Semestre supprimé !", 2500, Notification.Position.MIDDLE);
+            semestreasupprimer.setValue(null);
+            anneesemestreasupprimer.setValue(null);
             Integer semestre1 = semestreasupprimer.getValue();
             Integer annee1 = anneesemestreasupprimer.getValue();
              try{
@@ -212,6 +214,7 @@ public class InterfaceAdmin extends VerticalLayout {
         IntegerField groupeasupprimer = new IntegerField("Créneau du groupe");
         Button effacergroupe = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Groupe de modules supprimé !", 2500, Notification.Position.MIDDLE);
+            groupeasupprimer.setValue(null);
              Integer creneau1 = groupeasupprimer.getValue();
              try{
             int horraire = creneau1;
@@ -240,6 +243,8 @@ public class InterfaceAdmin extends VerticalLayout {
         IntegerField nbmin = new IntegerField("Capacité minimale");
         nbmin.setPlaceholder("Entier min");
         IntegerField choixgroupemodule = new IntegerField("Groupe du module");
+        IntegerField numerodusemestre = new IntegerField("Numéro du semestre");
+        IntegerField anneedusemestre = new IntegerField("Année");
         Button creermodule = new Button("Créer" , event -> {
             Notification.show("Module créé !", 2500, Notification.Position.MIDDLE);
             String nom = nommodule.getValue();
@@ -272,12 +277,13 @@ public class InterfaceAdmin extends VerticalLayout {
                 nbmax.setValue(null);
                 nbmin.setValue(null);
                 choixgroupemodule.setValue(null);
+                numerodusemestre.setValue(null);
+                anneedusemestre.setValue(null);
+                
         });
         rmodule.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationmodule = new HorizontalLayout(nommodule,nbmax,nbmin,choixgroupemodule);
         creationmodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
-        IntegerField numerodusemestre = new IntegerField("Numéro du semestre");
-        IntegerField anneedusemestre = new IntegerField("Année");
         HorizontalLayout semestredumodule = new HorizontalLayout(numerodusemestre,anneedusemestre);
         semestredumodule.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         HorizontalLayout buttonmodule = new HorizontalLayout(creermodule,rmodule);
@@ -287,6 +293,7 @@ public class InterfaceAdmin extends VerticalLayout {
         TextField moduleasupprimer = new TextField("Module à supprimer");
         Button effacermodule = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Module supprimé !", 2500, Notification.Position.MIDDLE);
+            moduleasupprimer.setValue("");
             String etudiant1 = moduleasupprimer.getValue();
             try {
                 SupprimeLigne.supprimeModule(con, etudiant1);
@@ -338,6 +345,7 @@ public class InterfaceAdmin extends VerticalLayout {
            prenom.setValue("");
            mail.setValue("");
            mdp.setValue("");
+           datenaissance.setValue(null);
        });
         retudiant.addThemeVariants(ButtonVariant.LUMO_ERROR);
         HorizontalLayout creationetudiant = new HorizontalLayout(prenom,nom,mail,mdp,datenaissance);
@@ -349,6 +357,7 @@ public class InterfaceAdmin extends VerticalLayout {
         TextField etudiantasupprimer = new TextField("Etudiant à supprimer");
         Button effaceretudiant = new Button("Effacer",new Icon(VaadinIcon.TRASH),event -> {
             Notification.show("Etudiant supprimé !", 2500, Notification.Position.MIDDLE);
+            etudiantasupprimer.setValue("");
             String etudiant1 = etudiantasupprimer.getValue();
             try {
                 SupprimeLigne.supprimeEtudiant(con, etudiant1);
