@@ -41,15 +41,11 @@ public class ConnectionEtudiantInterface extends VerticalLayout {
         email.setPattern("^.+@insa-strasbourg\\.fr$");
         add(email);
         var password = new PasswordField("Mot de passe");
-        add(
-        new H2("Connection en tant qu'étudiant"),
-                email,
-                password,
-                new Button("Se connecter", event -> {
-                                String email1= email.getValue();
-                String mdp = password.getValue();
-            
-                add(new Paragraph ("ok"));
+        Button etudiantconnexion = new Button("Se connecter");
+        etudiantconnexion.addClickListener(e ->{
+            String email1= email.getValue();
+            String mdp = password.getValue();
+             add(new Paragraph ("ok"));
                 try ( Connection con = MainTestPgAdmin.connectPostgresql(
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
@@ -57,6 +53,7 @@ public class ConnectionEtudiantInterface extends VerticalLayout {
                add(new Paragraph ("salut"));
                 if ("ok".equals(resultat)){
                     add(new Paragraph ("tout est ok"));
+                    etudiantconnexion.getUI().ifPresent(ui ->ui.navigate("etudiant"));
                    
                 }
                 else {
@@ -70,10 +67,12 @@ public class ConnectionEtudiantInterface extends VerticalLayout {
             System.out.println("Probleme : " + ex);
              add(new Paragraph ("probleme bdd2"));
         }
-            
-                })
-                
-        ); }
-        
-    
+        });
+        add(
+        new H2("Connection en tant qu'étudiant"),
+                email,
+                password,
+                etudiantconnexion
+        );
+    }
 }
