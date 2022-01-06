@@ -1,21 +1,16 @@
 package com.example.application.views.helloworld;
 
 import com.example.application.views.MainLayout;
-import static com.example.application.views.helloworld.InterfaceAdmin.connectPostgresql;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -50,7 +45,6 @@ public class ConnectionEtudiantInterface extends VerticalLayout {
                 "localhost", 5432,
                 "postgres", "postgres", "pass")) {
                 String resultat = ConnexionEtudiant.connexionEtudiant1(con, email1, mdp);
-               add(new Paragraph ("salut"));
                 if ("ok".equals(resultat)){
                     add(new Paragraph ("tout est ok"));
                     etudiantconnexion.getUI().ifPresent(ui ->ui.navigate("etudiant"));
